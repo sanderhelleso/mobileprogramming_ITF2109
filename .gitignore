@@ -1,0 +1,7 @@
+/docs/assets
+/docs/*.aux
+/docs/*.fdb_latexmk
+/docs/*.fls
+/docs/*.log
+/docs/*.synctex.gz
+/docs/*.pdf
