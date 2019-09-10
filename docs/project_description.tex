@@ -1,0 +1,68 @@
+\documentclass{article}
+
+\title{Project Description}
+\author{Sander Hellesø}
+
+\usepackage{pdfpages}
+\usepackage{titlesec}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={120mm,225mm},
+ left=45mm,
+ top=40mm,
+ }
+
+
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+\titleformat*{\paragraph}{\large\bfseries}
+\titleformat*{\subparagraph}{\large\bfseries}
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+  \includepdf[fitpaper=true, pages=-]{./assets/cover.pdf}
+  \setcounter{page}{1}
+  
+  \section{Description}
+    \paragraph{}
+    IIFYM App (Not offical name) is an application that will help users stick to their diet and acheive their fitness and health goals in a fun and motivating way.
+    The application will heavily focus on the motivational aspect, utilizing visual charts, a streak system, and if time, friends feed, while
+    at the same time provide the user with contiunal help on their fitness journey. The main feature of the app is that the user can daily enter 
+    the calories and macronutriens eaten, the app will use these to continuously update the calorie requirement to user needs to reach their
+    fitness goals.
+    
+    \hfill \break
+
+  \section{Specification}
+    \paragraph{}
+    The following is the features that should be integrated into the application to ensure it provides the promised features.
+
+      \subsection{Must}
+        \begin{itemize}
+          \item Registration / Account creation
+          \item Login / Logout
+          \item Profile Setup
+          \item Daily input of calories eaten
+          \item System to continuously calculate calorie requirement
+          \item History of inputs / weekly / monthly / yearly
+          \item Visualy see progress using charts
+          \item Streak system / badges (logged in X days in a row etc)
+        \end{itemize}
+
+      \subsection{Should}
+        \begin{itemize}
+          \item Optional image upload to further add to progress section
+          \item Some sort of social network (feed, friends, messages)
+        \end{itemize}
+
+      \subsection{Can}
+        \begin{itemize}
+          \item Import calories and macronutriens from datasets / other apps
+        \end{itemize}
+
+  \newpage
+  \section{Illustrations}
+      
+\end{document}
