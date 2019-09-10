@@ -5,12 +5,16 @@
 
 \usepackage{pdfpages}
 \usepackage{titlesec}
+\usepackage{subfig}
+\usepackage{changepage}
+\usepackage{graphicx}
+\graphicspath{ {./assets/} }
 \usepackage{geometry}
  \geometry{
  a4paper,
  total={120mm,225mm},
  left=45mm,
- top=40mm,
+ top=45mm,
  }
 
 
@@ -51,11 +55,15 @@
           \item Streak system / badges (logged in X days in a row etc)
         \end{itemize}
 
+        \hfill \break
+
       \subsection{Should}
         \begin{itemize}
           \item Optional image upload to further add to progress section
           \item Some sort of social network (feed, friends, messages)
         \end{itemize}
+
+        \hfill \break
 
       \subsection{Can}
         \begin{itemize}
@@ -64,5 +72,53 @@
 
   \newpage
   \section{Illustrations}
+    \paragraph{}
+    On the page below, three different mockups are attatched. Home, progress and goals. These three will be the main sections of the application.
+
+    \hfill \break
+
+    \subsection{Home}
+      \paragraph{}
+      The home screen will show an overview of the users goal and an estimate of how long it is until the user reaches the goal.
+      It also provides the user with the overview of the calories and macronutriens required to hit on the daily basis. An edit goal button
+      is also provided such that the user easily can edit the goal from the main entry point of the app; the home screen.
+
+      \hfill \break
+
+    \subsection{Progress}
+      \paragraph{}
+      The progress screen is responsible for keeping track of the users progress and proivides a hisotry list, displatying
+      information about each week tracked. The user should be able to further see details of the week by clicking on the specific week.
+      The user is also provided with a checkmark or an cross, depending if the user managed to fill out every day that week.
+     
+      \hfill \break
+
+    \subsection{Goals}
+      \paragraph{}
+      The goals screen will provide the user with ways to create / edit and see the current goal in details. 
+      If the user dont have a goal (first time user), the app wil make them create a new goal, else the current goal can be modified
+      or even deleted, the user must however always have one active goal in order for the app to work as planned.
+      
+      \hfill \break
+
+    \subsection{Navigation}
+      \paragraph{}
+      Navigation between screens are mainly done by utilizing a fixed bottombar component, available on every screen, highlightng the current
+      screen. This ensures the user easily can toggle sceens comfortably due to the natural position of the tabbar (easy access from thumbs). 
+      There should alse be a topbar providing a back button if the screens are nested, eg user is watching details of week 4, week 4 is under progress history.
+
+  \begin{adjustwidth}{0px}{150px}
+    \begin{figure}
+      \begin{tabular}{cc}
+        \includegraphics[scale=0.4]{home} & \includegraphics[scale=0.4]{progress} \\
+      (a) Home & (b) Progress \\[25pt]
+      \includegraphics[scale=0.4]{goals}\\
+      (c) Goals \\[25pt]
+      \end{tabular}
+      \caption{Mocups of app screens}
+    \end{figure}
+  \end{adjustwidth}
+
+
       
 \end{document}
