@@ -1,0 +1,176 @@
+\documentclass{article}
+
+\title{Systemdesign}
+\author{Sander Hellesø}
+
+\usepackage{pdfpages}
+\usepackage{titlesec}
+\usepackage{subfig}
+\usepackage{changepage}
+\usepackage{graphicx}
+\graphicspath{ {./assets/} }
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={120mm,225mm},
+ left=45mm,
+ top=45mm,
+ }
+
+
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+\titleformat*{\paragraph}{\large\bfseries}
+\titleformat*{\subparagraph}{\large\bfseries}
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+  \includepdf[fitpaper=true, pages=-]{./assets/cover2.pdf}
+  \setcounter{page}{1}
+  
+  \section{Structure}
+    \paragraph{}
+    The application will be utlizing a combination of fragments and services. Services will be used when uploading photos and while saving the data to the database. 
+    Fragments will be heavily used to activate the different acitivties of the app, however if we can get around with a more simple solution to navigate around activites,
+    the need for fragments might be reduced.
+
+    \hfill \break
+    \hfill \break
+
+    \subsection{Datastorage}
+        \paragraph{}
+        Firebase will be the platform of choice when it comes to datastorage. The data should be structured no longer than 2 childS deep than the parent tree to reduce the amount of read per query.
+        There is no need for realtime updates so Firestore will most likely be utilized over the realtime database.
+
+        \paragraph{}
+        Data will mainly be provided by the user. There is some validation of data required, but most of this is already handled by the different components available to us. 
+        Data that needs to be validated is mainly the numbers for the different nutrients, images uploaded might needs to be reduced in size if uploaded.
+
+    \hfill \break
+    \hfill \break
+    
+    \subsection{Trees}
+        \paragraph{}
+        Users record has the generated firebase ID as the parent, Goals and Weeks will use the releated users firebase ID.
+        Goals will most likely be unqiue such that a user can only have one goal at a time. If we will store old goals for history
+        is still not decided and need to be decided in the future. Weeks will contain week number, amount of days filled out, and a list of days, where each day
+        contain data about the nutrients for that specific day, in the end summing up to a weekly total. Every week will also contain and optional field; Progress picture.
+        This picture will either be in base64 or a reference to the uploaded files bucket if we decide to use the firebase service.
+        On the next page, a list containing a rough idea on how the data will be structured is provided.
+
+        \newpage
+        \hfill \break
+        \subsubsection{JSON Structure}
+
+        \hfill \break
+
+        \begin{itemize}
+          \item Users
+            \begin{itemize}
+                \item Email
+                \item Passwordhash
+                \item Streak
+            \end{itemize}
+            \hfill \break
+          \item Goals
+            \begin{itemize}
+                \item Current Weight
+                \item Goal Weight
+                \item Estimates weeks to goal
+                \item Total Calories
+                \item Fat
+                \item Protein
+                \item Carbohydrates
+                \item Progress picture
+            \end{itemize}
+            \hfill \break
+          \item Weeks
+            \begin{itemize}
+                \item Week number
+                \item Days completed
+                    \begin{itemize}
+                        \item Day
+                        \item Total Calories
+                        \item Fat
+                        \item Protein
+                        \item Carbohydrates
+                    \end{itemize}
+            \end{itemize}
+        \end{itemize}
+
+    \newpage
+
+    \section{Main Sections}
+        \paragraph{}
+        As written in the Project Description, the application will contain the following sections. 
+        Note that Every section with exception of Signup / Login is hidden behind authentication. A user must have an account in order to continue to these.
+
+        \hfill \break
+
+        \begin{itemize}
+            \item Signup / Login
+            \item Home
+            \item Goals
+            \item Settings
+            \item Progress
+        \end{itemize}
+
+        \hfill \break
+
+        \subsection{Flow}
+            \paragraph{}
+            When first launching the app. The user will be provided with either the Home screen if authenticated, or the Signup / Login.
+            Once authenticated the user will have access to Goals, Settings and Progress. The navigation between these are done with a fixed
+            bottom navigation bar that is always available, no matter what screen the user is currently on. On nesten screens, a backbutton in the top left corner
+            is provided. An example of a nested screen is when a user is on the Progress screen and wants to see details about a specific day. 
+            The user will click on the specific day and be transitioned into a new screen containing the details about that specific day. From here,
+            the user obviuously should be able to go back to the list of weeks, so a back button is provided in this scenario.
+
+        \hfill \break
+
+        \subsection{Design}
+            \paragraph{}
+            In regards to design, it will mainly be Material Design, utilizing the provided components given to us. 
+            However, most of them will be customized to fit the desired theme and look I want to achive. 
+            Clean colors, light shadows, bold text with a nice font, aswell as enough space is important for this application
+            such that it feel professional and not just another basic Android App.  
+
+    \newpage
+
+    \section{Resources}
+        \paragraph{}
+        Most of the applications illustation resources will be available from Material, using the Material Icons set. If we were to implement the social newsfeed,
+        a fitting sound might be needed and would thus be required to download from an external service with the correct license.
+
+    \hfill \break
+
+    \section{Classes}
+        \paragraph{}
+        Below is a list of the classes required to build the application at this time. This list will be updated as the application progresses thorugh development.
+
+        \hfill \break
+
+        \begin{itemize}
+            \item ImageUpload       - Handles proccesing and uploading of taken image
+            \item CalculateMacros   - Calculation of the users calories and macronutrients
+            \item Week              - Contains methods for a specific week of a users goal
+            \item Day               - Contains methods for a specific day of a users week goal
+            \item User              - Contain info and methods for the current logged in user  
+        \end{itemize}
+
+        \hfill \break
+
+    \section{Libaries}
+        \paragraph{}
+        Below is a list of the required libaries required to build the application. This list might be updated as the application progresses thorugh development.
+
+        \hfill \break
+
+        \begin{itemize}
+            \item Firebase       - Cloud Database and authentication provided by Google
+            \item Cloud Storage  - Cloud Storage service, a subfeature of Firebase
+            \item MPAndroidChart - A powerful Android chart view / graph view library, supporting line- bar- pie- radar- bubble- and candlestick charts as well as scaling, dragging and animations.
+        \end{itemize}
+
+\end{document}
