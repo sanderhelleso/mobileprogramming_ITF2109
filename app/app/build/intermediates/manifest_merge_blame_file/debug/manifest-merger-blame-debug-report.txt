@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.example.iifym"
+3    package="com.iifym"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
@@ -28,7 +28,7 @@
 19        android:testOnly="true"
 20        android:theme="@style/AppTheme" >
 20-->C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\main\AndroidManifest.xml:11:9-40
-21        <activity android:name="com.example.iifym.MainActivity" >
+21        <activity android:name="com.iifym.MainActivity" >
 21-->C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\main\AndroidManifest.xml:12:9-18:20
 21-->C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\main\AndroidManifest.xml:12:19-47
 22            <intent-filter>

@@ -35,7 +35,7 @@ INJECTED from C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\ma
 INJECTED from C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\main\AndroidManifest.xml:2:1-21:12
 INJECTED from C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\main\AndroidManifest.xml:2:1-21:12
 	package
-		ADDED from C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\main\AndroidManifest.xml:3:5-32
+		ADDED from C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\main\AndroidManifest.xml:3:5-24
 		INJECTED from C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\main\AndroidManifest.xml
 	android:versionName
@@ -70,7 +70,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Sa
 		ADDED from C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\main\AndroidManifest.xml:6:9-35
 	android:theme
 		ADDED from C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\main\AndroidManifest.xml:11:9-40
-activity#com.example.iifym.MainActivity
+activity#com.iifym.MainActivity
 ADDED from C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\main\AndroidManifest.xml:12:9-18:20
 	android:name
 		ADDED from C:\Users\Sander\workspace\mobileprogramming_ITF2109\app\app\src\main\AndroidManifest.xml:12:19-47
