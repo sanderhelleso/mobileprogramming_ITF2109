@@ -3,7 +3,9 @@ package com.iifym;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -15,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.iifym.classes.IntentSelector;
 import com.iifym.classes.Validator;
 
 public class LoginActivity extends AppCompatActivity {
@@ -57,12 +61,15 @@ public class LoginActivity extends AppCompatActivity {
     private void signIn(String email, String pass) {
         this.loginBtn.setEnabled(false);
         this.loginBtn.setText("Authenticating...");
+        final Activity activity = this;
 
         auth.signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            FirebaseUser user = auth.getCurrentUser();
+                            IntentSelector.hasSetupProfile(user, auth, new Intent(), activity);
                             return;
                         }
 
