@@ -42,4 +42,13 @@ public class Validator {
 
         return true;
     }
+
+    public static boolean comparePass(String pass1, String pass2, Context ctx) {
+        if (!pass1.equals(pass2)) {
+            Toast.makeText(ctx, "Passwords does not match", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
+    }
 }
