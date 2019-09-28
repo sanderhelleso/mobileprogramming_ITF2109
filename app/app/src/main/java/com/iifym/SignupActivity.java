@@ -1,5 +1,6 @@
 package com.iifym;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,7 +9,11 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.iifym.classes.Validator;
 
@@ -51,6 +56,41 @@ public class SignupActivity extends AppCompatActivity {
         if (!Validator.comparePass(pass, confirmPass, ctx)) {
             return;
         }
+
+        this.createUser(email, pass);
+    }
+
+    private void createUser(String email, String pass) {
+        this.signupBtn.setEnabled(false);
+        this.signupBtn.setText("Creating User...");
+
+        this.auth.createUserWithEmailAndPassword(email, pass)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull final Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            finish();
+                            return;
+                        }
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                String msg;
+
+                                try {
+                                 msg = task.getException().getMessage();
+                                } catch (NullPointerException e) {
+                                    msg = "Unable to create user at this time. Please try again";
+                                }
+
+                                Toast.makeText(ctx, msg, Toast.LENGTH_LONG).show();
+                                signupBtn.setEnabled(true);
+                                signupBtn.setText("Sign Up");
+                            }
+                        }, 500);
+                    }
+                });
     }
 
 }
