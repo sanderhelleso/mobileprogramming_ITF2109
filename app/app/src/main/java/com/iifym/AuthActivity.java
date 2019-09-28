@@ -15,6 +15,11 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     public void gotoLogin(View view) {
+
         startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    public void gotoSignup(View view) {
+        startActivity(new Intent(this, SignupActivity.class));
     }
 }
