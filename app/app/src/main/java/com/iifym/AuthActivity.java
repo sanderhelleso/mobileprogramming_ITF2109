@@ -6,11 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.iifym.classes.WindowHelper;
+
 public class AuthActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        WindowHelper.setTransparentNav(getWindow());
         setContentView(R.layout.activity_auth);
     }
 

@@ -2,46 +2,53 @@ package com.iifym;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
 import android.view.WindowManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.iifym.classes.IntentSelector;
+import com.iifym.classes.WindowHelper;
 
 public class SplashActivity extends AppCompatActivity {
-    private final int SPLASH_DISPLAY_LENGTH = 1000;
+    private final int SPLASH_DURATION = 1000;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        Window w = getWindow();
+        WindowHelper.setTransparentNav(w);
+        w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
+
+        this.auth = FirebaseAuth.getInstance();
     }
 
     @Override
     public void onStart() {
         super.onStart();
 
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        final FirebaseUser user = auth.getCurrentUser();
         final Intent intent = new Intent();
+        final Activity activity = this;
+        auth.signOut();
 
-        if (currentUser == null) {
-            intent.setClass(this, AuthActivity.class);
-        } else {
-            intent.setClass(this, HomeActivity.class);
-        }
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
-                startActivity(intent);
-                finish();
+                if (user == null) {
+                    intent.setClass(activity, AuthActivity.class);
+                    IntentSelector.replaceActivity(intent, activity);
+                } else {
+                    IntentSelector.hasSetupProfile(user, auth, intent, activity);
+                }
             }
-        }, SPLASH_DISPLAY_LENGTH);
+        }, SPLASH_DURATION);
     }
 }

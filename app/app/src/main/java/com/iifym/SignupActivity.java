@@ -3,7 +3,9 @@ package com.iifym;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -15,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.iifym.classes.IntentSelector;
 import com.iifym.classes.Validator;
 
 public class SignupActivity extends AppCompatActivity {
@@ -63,13 +66,15 @@ public class SignupActivity extends AppCompatActivity {
     private void createUser(String email, String pass) {
         this.signupBtn.setEnabled(false);
         this.signupBtn.setText("Creating User...");
+        final Activity activity = this;
 
         this.auth.createUserWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull final Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            finish();
+                            Intent intent = new Intent(ctx, ProfileSetupActivity.class);
+                            IntentSelector.replaceActivity(intent, activity);
                             return;
                         }
 
