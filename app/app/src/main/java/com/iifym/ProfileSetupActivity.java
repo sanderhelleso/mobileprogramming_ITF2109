@@ -10,19 +10,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.iifym.classes.User;
+
 public class ProfileSetupActivity extends AppCompatActivity {
     private String[] dropdownOptions = { "Male", "Female" };
-    private String selectedGender = dropdownOptions[0];
+    private String selectedGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_setup);
-
         initDropdown();
     }
 
     private void initDropdown() {
+        String gender = User.getGender();
+        selectedGender = gender != null && !gender.equals("") ? gender : dropdownOptions[0];
+
         Spinner spinner = findViewById(R.id.gender_dropdown);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, R.layout.support_simple_spinner_dropdown_item, dropdownOptions
@@ -39,6 +43,7 @@ public class ProfileSetupActivity extends AppCompatActivity {
                 view.setTextColor(getResources().getColor(R.color.mainRed));
                 view.setTextSize(22);
                 selectedGender = dropdownOptions[position];
+                User.setGender(selectedGender);
             }
 
             @Override
