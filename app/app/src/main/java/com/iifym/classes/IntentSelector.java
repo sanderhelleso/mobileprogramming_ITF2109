@@ -1,7 +1,6 @@
 package com.iifym.classes;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
@@ -16,7 +15,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.iifym.AuthActivity;
 import com.iifym.HomeActivity;
-import com.iifym.ProfileSetupActivity;
+import com.iifym.ProfileSetup_Stage1activity;
 
 public class IntentSelector {
 
@@ -33,7 +32,7 @@ public class IntentSelector {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             boolean isEmpty = task.getResult().isEmpty();
-                            intent.setClass(activity, isEmpty ? ProfileSetupActivity.class : HomeActivity.class);
+                            intent.setClass(activity, isEmpty ? ProfileSetup_Stage1activity.class : HomeActivity.class);
                         } else {
                             auth.signOut();
                             intent.setClass(activity, AuthActivity.class);

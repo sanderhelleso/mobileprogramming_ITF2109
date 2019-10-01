@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -18,16 +17,13 @@ import com.iifym.classes.DatePicker;
 import com.iifym.classes.HintAdapter;
 import com.iifym.classes.User;
 
-public class ProfileSetupActivity extends AppCompatActivity {
+public class ProfileSetup_Stage1activity extends AppCompatActivity {
     private String[] dropdownOptions = { "Male", "Female", "Select an gender" };
     private String selectedGender;
-    private Button nextStageBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        this.nextStageBtn = findViewById(R.id.next_stage_button);
         setContentView(R.layout.activity_profile_setup);
 
         initDropdown();
@@ -68,7 +64,7 @@ public class ProfileSetupActivity extends AppCompatActivity {
 
     private void initDatePicker() {
         EditText birthdayInput = findViewById(R.id.birthdayInput);
-        birthdayInput.setInputType(InputType.TYPE_NULL);
+        birthdayInput.setInputType(InputType.TYPE_NULL); // hide keyboard
 
         if (User.getBirthday() != null) {
            birthdayInput.setText(User.getBirthdayFormated());
@@ -77,7 +73,7 @@ public class ProfileSetupActivity extends AppCompatActivity {
         new DatePicker(birthdayInput, this);
     }
 
-    private boolean checkIfCanNext() {
+    private boolean canNextStage() {
         if (selectedGender.equals(dropdownOptions[dropdownOptions.length - 1])) {
             Toast.makeText(this, "Please select your gender", Toast.LENGTH_LONG).show();
             return false;
@@ -92,11 +88,8 @@ public class ProfileSetupActivity extends AppCompatActivity {
     }
 
     public void nextStage(View view) {
-        if (!checkIfCanNext()) {
-            return;
+        if (canNextStage()) {
+            startActivity(new Intent(this, ProfileSetup_Stage2activity.class));
         }
-
-        // replace with next stage
-        startActivity(new Intent(this, LoginActivity.class));
     }
 }
