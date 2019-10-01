@@ -1,6 +1,10 @@
 package com.iifym.classes;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -27,5 +31,19 @@ public class User {
 
     public static String getBirthdayFormated() {
         return D_FORMAT.format(birthday.getTime());
+    }
+
+    public static int getAge() {
+        Calendar present = Calendar.getInstance();
+        Calendar past = Calendar.getInstance();
+        past.setTime(birthday);
+
+        int years = 0;
+        while (past.before(present)) {
+            past.add(Calendar.YEAR, 1);
+            years++;
+        }
+
+        return years;
     }
 }
