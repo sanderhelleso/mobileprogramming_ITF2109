@@ -7,6 +7,7 @@ import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class DatePicker implements View.OnFocusChangeListener, DatePickerDialog.OnDateSetListener {
@@ -29,7 +30,10 @@ public class DatePicker implements View.OnFocusChangeListener, DatePickerDialog.
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, day);
 
-        editText.setText(simpleDateFormat.format(calendar.getTime()));
+
+        Date date = calendar.getTime();
+        editText.setText(simpleDateFormat.format(date));
+        User.setBirthday(date);
     }
 
     @Override
