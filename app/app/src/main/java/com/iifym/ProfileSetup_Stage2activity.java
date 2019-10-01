@@ -6,7 +6,12 @@ import android.os.Bundle;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.iifym.classes.SeekBarWithMin;
+
 public class ProfileSetup_Stage2activity extends AppCompatActivity {
+    private SeekBar myHeightSeekBar;
+    private SeekBar currentWeightSeekBar;
+    private SeekBar goalWeightSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,32 +22,8 @@ public class ProfileSetup_Stage2activity extends AppCompatActivity {
     }
 
     private void initCurrentWeightSeekBar() {
-        final int MIN = 40;
-        final int MAX = 180;
-
-        final TextView textView = findViewById(R.id.currentWeight_text);
-        SeekBar seekBar = findViewById(R.id.currentWeight_seekBar);
-
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (progress <= MIN) {
-                    progress = MIN + progress;
-                }
-
-                StringBuilder sb = new StringBuilder(String.valueOf(progress));
-                textView.setText(sb.append(progress == MAX ? "+" : "").toString());
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+        TextView textView = findViewById(R.id.currentWeight_text);
+        currentWeightSeekBar = findViewById(R.id.currentWeight_seekBar);
+        new SeekBarWithMin(currentWeightSeekBar, 40, 180, textView);
     }
 }
