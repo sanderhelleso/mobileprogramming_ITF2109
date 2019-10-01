@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.iifym.classes.DatePicker;
 import com.iifym.classes.User;
 
 public class ProfileSetupActivity extends AppCompatActivity {
@@ -21,6 +24,7 @@ public class ProfileSetupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_setup);
         initDropdown();
+        initDatePicker();
     }
 
     private void initDropdown() {
@@ -49,5 +53,11 @@ public class ProfileSetupActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {}
         });
+    }
+
+    private void initDatePicker() {
+        EditText birthdayInput = findViewById(R.id.birthdayInput);
+        birthdayInput.setInputType(InputType.TYPE_NULL);
+        new DatePicker(birthdayInput, this);
     }
 }
