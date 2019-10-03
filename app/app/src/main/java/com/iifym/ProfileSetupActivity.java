@@ -17,7 +17,7 @@ import com.iifym.classes.DatePicker;
 import com.iifym.classes.HintAdapter;
 import com.iifym.classes.User;
 
-public class ProfileSetup_Stage1activity extends AppCompatActivity {
+public class ProfileSetupActivity extends AppCompatActivity {
     private String[] dropdownOptions = { "Male", "Female", "Select an gender" };
     private String selectedGender;
 
@@ -89,7 +89,7 @@ public class ProfileSetup_Stage1activity extends AppCompatActivity {
 
     public void nextStage(View view) {
         if (canNextStage()) {
-            startActivity(new Intent(this, ProfileSetup_Stage2activity.class));
+            startActivity(new Intent(this, GoalStatsActivity.class));
         }
     }
 }

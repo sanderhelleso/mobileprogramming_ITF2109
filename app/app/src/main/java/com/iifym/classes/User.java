@@ -1,9 +1,6 @@
 package com.iifym.classes;
 
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -11,6 +8,43 @@ import java.util.Locale;
 public class User {
     private static String gender;
     private static Date birthday;
+    private static int height;
+    private static int currentWeight;
+    private static int goalWeight;
+    private static int activityLvl;
+
+    public static int getHeight() {
+        return height;
+    }
+
+    public static void setHeight(int height) {
+        User.height = height;
+    }
+
+    public static int getCurrentWeight() {
+        return currentWeight;
+    }
+
+    public static void setCurrentWeight(int currentWeight) {
+        User.currentWeight = currentWeight;
+    }
+
+    public static int getGoalWeight() {
+        return goalWeight;
+    }
+
+    public static void setGoalWeight(int goalWeight) {
+        User.goalWeight = goalWeight;
+    }
+
+    public static int getActivityLvl() {
+        return activityLvl;
+    }
+
+    public static void setActivityLvl(int activityLvl) {
+        User.activityLvl = activityLvl;
+    }
+
     private static final SimpleDateFormat D_FORMAT = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
 
     public static void setGender(String _gender) {
