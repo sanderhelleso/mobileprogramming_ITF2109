@@ -25,12 +25,15 @@ public class SeekBarWithMin {
     }
 
     private void initSeekBar(final boolean withTextView) {
+        int calculatedMax = MAX - MIN;
+        seekBar.setMax(calculatedMax);
+        seekBar.setProgress(calculatedMax / 2);
+
+        textView.setText(String.valueOf(MIN + (calculatedMax / 2)));
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (progress <= MIN) {
-                    progress = MIN + progress;
-                }
+                progress = MIN + progress;
 
                 if (withTextView) {
                     StringBuilder sb = new StringBuilder(String.valueOf(progress));
