@@ -73,7 +73,7 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull final Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Intent intent = new Intent(ctx, ProfileSetup_Stage1activity.class);
+                            Intent intent = new Intent(ctx, ProfileSetupActivity.class);
                             IntentSelector.replaceActivity(intent, activity);
                             return;
                         }
