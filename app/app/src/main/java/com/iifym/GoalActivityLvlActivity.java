@@ -2,9 +2,11 @@ package com.iifym;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.iifym.classes.User;
 
@@ -37,7 +39,9 @@ public class GoalActivityLvlActivity extends AppCompatActivity {
     }
 
     public void nextStage(View view) {
-        String selectedBtnStrId = getResources().getResourceName(selectedLvlID);
+        String selectedBtnStrId = getResources().getResourceEntryName(selectedLvlID);
         User.setActivityLvl(activityLvls.get(selectedBtnStrId));
+
+        startActivity(new Intent(this, GoalWorkoutFreqActivity.class));
     }
 }
