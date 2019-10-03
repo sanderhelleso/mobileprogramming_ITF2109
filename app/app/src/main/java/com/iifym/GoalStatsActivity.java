@@ -49,6 +49,6 @@ public class GoalStatsActivity extends AppCompatActivity {
         User.setCurrentWeight(currentWeightSeekBar.getProgress());
         User.setGoalWeight(goalWeightSeekBar.getProgress());
 
-        startActivity(new Intent(this, ProfileSetupActivity.class));
+        startActivity(new Intent(this, GoalActivityLvlActivity.class));
     }
 }
