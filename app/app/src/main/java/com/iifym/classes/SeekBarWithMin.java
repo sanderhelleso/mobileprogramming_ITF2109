@@ -10,6 +10,7 @@ public class SeekBarWithMin {
     private int MAX;
     private SeekBar seekBar;
     private TextView textView;
+    private int value;
 
     public SeekBarWithMin(SeekBar seekBar, int MIN, int MAX, @Nullable TextView textView) {
         this.seekBar = seekBar;
@@ -47,5 +48,9 @@ public class SeekBarWithMin {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+    }
+
+    public int getValue() {
+        return MIN + seekBar.getProgress();
     }
 }
