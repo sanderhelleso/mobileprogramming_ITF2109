@@ -1,5 +1,9 @@
 package com.iifym.classes;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -79,5 +83,19 @@ public class User {
         }
 
         return years;
+    }
+
+    public static void saveProfile() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String uid = auth.getCurrentUser().getUid();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference profilesRef = db.collection("profiles");
+        Profile profile = new Profile(uid, gender, birthday, height);
+        profilesRef.add(profile);
+    }
+
+    public static void saveGoal() {
+
     }
 }
