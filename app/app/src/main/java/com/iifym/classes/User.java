@@ -39,7 +39,7 @@ public class User {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference profilesRef = db.collection("profiles");
-        Profile profile = new Profile(uid, gender, birthday, height);
+        Profile profile = new Profile(uid, gender, birthday, height, false);
         profilesRef.add(profile);
     }
 
