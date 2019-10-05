@@ -9,17 +9,24 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.iifym.classes.DatePicker;
 import com.iifym.classes.HintAdapter;
+import com.iifym.classes.IntentSelector;
+import com.iifym.classes.Profile;
+import com.iifym.classes.SeekBarWithMin;
 import com.iifym.classes.User;
+
+import java.util.Date;
 
 public class ProfileSetupActivity extends AppCompatActivity {
     private String[] dropdownOptions = { "Male", "Female", "Select an gender" };
     private String selectedGender;
+    private SeekBar heightSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,16 +35,12 @@ public class ProfileSetupActivity extends AppCompatActivity {
 
         initDropdown();
         initDatePicker();
+        initHeightSeekBar();
     }
 
     private void initDropdown() {
         final int COLOR_MAIN_RED = getResources().getColor(R.color.mainRed);
         final int COLOR_HINT = getResources().getColor(R.color.hint);
-
-        String gender = User.getGender();
-        if (gender != null && !gender.equals("")) {
-            selectedGender = gender;
-        }
 
         Spinner spinner = findViewById(R.id.gender_dropdown);
         HintAdapter adapter = new HintAdapter(this, R.layout.support_simple_spinner_dropdown_item, dropdownOptions);
@@ -65,12 +68,13 @@ public class ProfileSetupActivity extends AppCompatActivity {
     private void initDatePicker() {
         EditText birthdayInput = findViewById(R.id.birthdayInput);
         birthdayInput.setInputType(InputType.TYPE_NULL); // hide keyboard
-
-        if (User.getBirthday() != null) {
-           birthdayInput.setText(User.getBirthdayFormated());
-        }
-
         new DatePicker(birthdayInput, this);
+    }
+
+    private void initHeightSeekBar() {
+        TextView textView = findViewById(R.id.height_text);
+        heightSeekBar = findViewById(R.id.height_seekBar);
+        new SeekBarWithMin(heightSeekBar, 130, 230, textView);
     }
 
     private boolean canNextStage() {
@@ -89,7 +93,9 @@ public class ProfileSetupActivity extends AppCompatActivity {
 
     public void nextStage(View view) {
         if (canNextStage()) {
-            startActivity(new Intent(this, GoalStatsActivity.class));
+            User.setHeight(heightSeekBar.getProgress());
+            User.saveProfile();
+            IntentSelector.replaceActivity(new Intent(this, GoalStatsActivity.class), this);
         }
     }
 }

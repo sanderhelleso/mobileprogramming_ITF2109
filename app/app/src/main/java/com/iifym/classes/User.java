@@ -17,59 +17,7 @@ public class User {
     private static int goalWeight;
     private static int activityLvl;
 
-    public static int getHeight() {
-        return height;
-    }
-
-    public static void setHeight(int height) {
-        User.height = height;
-    }
-
-    public static int getCurrentWeight() {
-        return currentWeight;
-    }
-
-    public static void setCurrentWeight(int currentWeight) {
-        User.currentWeight = currentWeight;
-    }
-
-    public static int getGoalWeight() {
-        return goalWeight;
-    }
-
-    public static void setGoalWeight(int goalWeight) {
-        User.goalWeight = goalWeight;
-    }
-
-    public static int getActivityLvl() {
-        return activityLvl;
-    }
-
-    public static void setActivityLvl(int activityLvl) {
-        User.activityLvl = activityLvl;
-    }
-
     private static final SimpleDateFormat D_FORMAT = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
-
-    public static void setGender(String _gender) {
-        gender = _gender;
-    }
-
-    public static String getGender() {
-        return gender;
-    }
-
-    public static void setBirthday(Date date) {
-        birthday = date;
-    }
-
-    public static Date getBirthday() {
-        return birthday;
-    }
-
-    public static String getBirthdayFormated() {
-        return D_FORMAT.format(birthday.getTime());
-    }
 
     public static int getAge() {
         Calendar present = Calendar.getInstance();
@@ -97,5 +45,42 @@ public class User {
 
     public static void saveGoal() {
 
+    }
+
+    public static int getHeight() {
+        return height;
+    }
+
+    public static void setHeight(int height) {
+        User.height = height;
+    }
+
+    public static void setCurrentWeight(int currentWeight) {
+        User.currentWeight = currentWeight;
+    }
+
+    public static void setBirthday(Date birthday) {
+        User.birthday = birthday;
+    }
+
+    public static void setGender(String gender) {
+        User.gender = gender;
+    }
+
+    public static void setGoalWeight(int goalWeight) {
+        User.goalWeight = goalWeight;
+    }
+
+    public static void setActivityLvl(int activityLvl) {
+        User.activityLvl = activityLvl;
+    }
+
+
+    public static Date getBirthday() {
+        return birthday;
+    }
+
+    public static String getBirthdayFormated() {
+        return D_FORMAT.format(birthday.getTime());
     }
 }
