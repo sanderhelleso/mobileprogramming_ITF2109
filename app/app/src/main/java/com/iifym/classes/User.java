@@ -54,7 +54,7 @@ public class User {
     }
 
     // Harris-Benedict Equation, which takes into account age, height, and weight
-    public static double calculateBMR() {
+    public static int calculateBMR() {
         boolean isMale = gender.equals("Male");
 
         // bases depending on gender
@@ -63,11 +63,13 @@ public class User {
         double heightBase = isMale ? 5.0 : 1.8;
         double ageBase = isMale ? 6.8 : 4.7;
 
-        return genderBase + (weightBase * currentWeight) + (heightBase * height) - (ageBase * getAge());
+        double bmr = genderBase + (weightBase * currentWeight) + (heightBase * height) - (ageBase * getAge());
+        return (int) bmr;
     }
 
-    public static double calculateTDEE() {
-        return 0.0;
+    public static int calculateTDEE() {
+        double tdee = activityLvl * calculateBMR();
+        return (int) tdee;
     }
 
     public static int getHeight() {
