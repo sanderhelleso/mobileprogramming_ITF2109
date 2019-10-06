@@ -17,6 +17,8 @@ public class User {
     private static int goalWeight;
     private static double activityLvl;
     private static int intensityLvl;
+    private static int workoutsPerWeek;
+    private static int minutesPerWorkout;
 
     private static final SimpleDateFormat D_FORMAT = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
 
@@ -72,6 +74,25 @@ public class User {
         return (int) tdee;
     }
 
+    public static int calculateCalsToConsume() {
+        int tdee = calculateTDEE();
+        int deficit = tdee / 5; // 20%
+        return tdee - deficit;
+    }
+
+    public static int calculateWeeksToReachGoal() {
+        double safeLossPerWeek = 0.45359237; // 1 pound / 0.45kg per week
+        double currWeight = (double) currentWeight;
+
+        int weeks = 0;
+        while(currWeight >= goalWeight) {
+            currWeight -= safeLossPerWeek;
+            weeks++;
+        }
+
+        return weeks;
+    }
+
     public static int getHeight() {
         return height;
     }
@@ -104,6 +125,14 @@ public class User {
 
     public static Date getBirthday() {
         return birthday;
+    }
+
+    public static void setWorkoutsPerWeek(int workoutsPerWeek) {
+        User.workoutsPerWeek = workoutsPerWeek;
+    }
+
+    public static void setMinutesPerWorkout(int minutesPerWorkout) {
+        User.minutesPerWorkout = minutesPerWorkout;
     }
 
     public static String getBirthdayFormated() {
