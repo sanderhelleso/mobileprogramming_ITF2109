@@ -16,6 +16,7 @@ public class User {
     private static int currentWeight;
     private static int goalWeight;
     private static int activityLvl;
+    private static int intensityLvl;
 
     private static final SimpleDateFormat D_FORMAT = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
 
@@ -34,17 +35,22 @@ public class User {
     }
 
     public static void saveProfile() {
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        String uid = auth.getCurrentUser().getUid();
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference profilesRef = db.collection("profiles");
-        Profile profile = new Profile(uid, gender, birthday, height, false);
+        Profile profile = new Profile(getUID(), gender, birthday, height, false);
         profilesRef.add(profile);
     }
 
     public static void saveGoal() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference goalsRef = db.collection("goals");
+        Goal goal = new Goal(getUID(), currentWeight, currentWeight, goalWeight, activityLvl, intensityLvl, 10);
+        goalsRef.add(goal);
+    }
 
+    public static String getUID() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        return auth.getCurrentUser().getUid();
     }
 
     public static int getHeight() {
@@ -75,6 +81,7 @@ public class User {
         User.activityLvl = activityLvl;
     }
 
+    public static void setIntensityLvl(int intensityLvl) { User.intensityLvl = intensityLvl; }
 
     public static Date getBirthday() {
         return birthday;
