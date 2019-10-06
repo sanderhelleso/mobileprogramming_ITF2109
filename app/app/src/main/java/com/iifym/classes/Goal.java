@@ -9,13 +9,13 @@ public class Goal {
     public int currentWeight;
     public int startWeight;
     public int goalWeight;
-    public int activityLvl;
+    public double activityLvl;
     public int intensityLvl;
     public int estimatedWeeksToReach;
 
     public Goal() {}
 
-    public Goal(String uid, int currentWeight, int startWeight, int goalWeight, int activityLvl, int intensityLvl, int estimatedWeeksToReach) {
+    public Goal(String uid, int currentWeight, int startWeight, int goalWeight, double activityLvl, int intensityLvl, int estimatedWeeksToReach) {
         this.uid = uid;
         this.currentWeight = currentWeight;
         this.startWeight = startWeight;

@@ -15,7 +15,7 @@ public class User {
     private static int height;
     private static int currentWeight;
     private static int goalWeight;
-    private static int activityLvl;
+    private static double activityLvl;
     private static int intensityLvl;
 
     private static final SimpleDateFormat D_FORMAT = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
@@ -53,6 +53,23 @@ public class User {
         return auth.getCurrentUser().getUid();
     }
 
+    // Harris-Benedict Equation, which takes into account age, height, and weight
+    public static double calculateBMR() {
+        boolean isMale = gender.equals("Male");
+
+        // bases depending on gender
+        double genderBase = isMale ? 66.0 : 655.0;
+        double weightBase = isMale ? 13.7 : 9.6;
+        double heightBase = isMale ? 5.0 : 1.8;
+        double ageBase = isMale ? 6.8 : 4.7;
+
+        return genderBase + (weightBase * currentWeight) + (heightBase * height) - (ageBase * getAge());
+    }
+
+    public static double calculateTDEE() {
+        return 0.0;
+    }
+
     public static int getHeight() {
         return height;
     }
@@ -77,7 +94,7 @@ public class User {
         User.goalWeight = goalWeight;
     }
 
-    public static void setActivityLvl(int activityLvl) {
+    public static void setActivityLvl(double activityLvl) {
         User.activityLvl = activityLvl;
     }
 

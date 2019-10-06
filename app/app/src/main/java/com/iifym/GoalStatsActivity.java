@@ -12,8 +12,8 @@ import com.iifym.classes.SeekBarWithMin;
 import com.iifym.classes.User;
 
 public class GoalStatsActivity extends AppCompatActivity {
-    private SeekBar currentWeightSeekBar;
-    private SeekBar goalWeightSeekBar;
+    private SeekBarWithMin currentWeightSeekBar;
+    private SeekBarWithMin goalWeightSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +26,19 @@ public class GoalStatsActivity extends AppCompatActivity {
 
     private void initCurrentWeightSeekBar() {
         TextView textView = findViewById(R.id.currentWeight_text);
-        currentWeightSeekBar = findViewById(R.id.currentWeight_seekBar);
-        new SeekBarWithMin(currentWeightSeekBar, 40, 180, textView);
+        SeekBar _currentWeightSeekBar = findViewById(R.id.currentWeight_seekBar);
+        currentWeightSeekBar = new SeekBarWithMin(_currentWeightSeekBar, 40, 180, textView);
     }
 
     private void initGoalWeightSeekBar() {
         TextView textView = findViewById(R.id.goalWeight_text);
-        goalWeightSeekBar = findViewById(R.id.goalWeight_seekBar);
-        new SeekBarWithMin(goalWeightSeekBar, 40, 180, textView);
+        SeekBar _goalWeightSeekBar = findViewById(R.id.goalWeight_seekBar);
+        goalWeightSeekBar = new SeekBarWithMin(_goalWeightSeekBar, 40, 180, textView);
     }
 
     public void nextStage(View view) {
-        User.setCurrentWeight(currentWeightSeekBar.getProgress());
-        User.setGoalWeight(goalWeightSeekBar.getProgress());
+        User.setCurrentWeight(currentWeightSeekBar.getValue());
+        User.setGoalWeight(goalWeightSeekBar.getValue());
 
         startActivity(new Intent(this, GoalActivityLvlActivity.class));
     }

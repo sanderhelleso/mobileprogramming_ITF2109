@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class GoalActivityLvlActivity extends AppCompatActivity {
     private int selectedLvlID;
-    private Map<String, Integer> activityLvls = new HashMap<>();
+    private Map<String, Double> activityLvls = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +26,10 @@ public class GoalActivityLvlActivity extends AppCompatActivity {
     }
 
     private void fillActivityLvlMap() {
-        activityLvls.put("sedentary", 1);
-        activityLvls.put("light_active", 2);
-        activityLvls.put("active", 3);
-        activityLvls.put("very_active", 4);
+        activityLvls.put("sedentary", 1.3);
+        activityLvls.put("light_active", 1.375);
+        activityLvls.put("active", 1.55);
+        activityLvls.put("very_active", 1.725);
     }
 
     public void setActivityLvl(View view) {
