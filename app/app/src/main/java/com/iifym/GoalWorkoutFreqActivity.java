@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,8 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GoalWorkoutFreqActivity extends AppCompatActivity {
-    private SeekBar workoutsPerWeekSeekBar;
-    private SeekBar minutesPerWorkoutSeekBar;
+    private SeekBarWithMin workoutsPerWeekSeekBar;
+    private SeekBarWithMin minutesPerWorkoutSeekBar;
     private int selectedWorkoutIntensityID;
     private Map<String, Integer> intensityLvls = new HashMap<>();
 
@@ -47,14 +48,14 @@ public class GoalWorkoutFreqActivity extends AppCompatActivity {
 
     private void initWorkoutsPerWeekSeekBar() {
         TextView textView = findViewById(R.id.workouts_per_week_text);
-        workoutsPerWeekSeekBar = findViewById(R.id.workouts_per_week_seekBar);
-        new SeekBarWithMin(workoutsPerWeekSeekBar, 0, 7, textView);
+        SeekBar _workoutsPerWeekSeekBar = findViewById(R.id.workouts_per_week_seekBar);
+        workoutsPerWeekSeekBar = new SeekBarWithMin(_workoutsPerWeekSeekBar, 0, 7, textView);
     }
 
     private void initMinutesPerWorkoutSeekBar() {
         TextView textView = findViewById(R.id.minutes_per_workout_text);
-        minutesPerWorkoutSeekBar = findViewById(R.id.minutes_per_workout_seekBar);
-        new SeekBarWithMin(minutesPerWorkoutSeekBar, 30, 120, textView);
+        SeekBar _minutesPerWorkoutSeekBar = findViewById(R.id.minutes_per_workout_seekBar);
+        minutesPerWorkoutSeekBar = new SeekBarWithMin(_minutesPerWorkoutSeekBar, 30, 120, textView);
     }
 
     public void setIntensityLvl(View view) {

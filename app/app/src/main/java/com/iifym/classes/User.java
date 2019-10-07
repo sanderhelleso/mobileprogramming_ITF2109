@@ -15,8 +15,10 @@ public class User {
     private static int height;
     private static int currentWeight;
     private static int goalWeight;
-    private static int activityLvl;
+    private static double activityLvl;
     private static int intensityLvl;
+    private static int workoutsPerWeek;
+    private static int minutesPerWorkout;
 
     private static final SimpleDateFormat D_FORMAT = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
 
@@ -44,13 +46,75 @@ public class User {
     public static void saveGoal() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference goalsRef = db.collection("goals");
-        Goal goal = new Goal(getUID(), currentWeight, currentWeight, goalWeight, activityLvl, intensityLvl, 10);
+        Goal goal = new Goal(getUID(), currentWeight, currentWeight, goalWeight, activityLvl, intensityLvl, 10, calculateMacros());
         goalsRef.add(goal);
     }
 
     public static String getUID() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         return auth.getCurrentUser().getUid();
+    }
+
+    // Harris-Benedict Equation, which takes into account age, height, and weight
+    public static int calculateBMR() {
+        boolean isMale = gender.equals("Male");
+
+        // bases depending on gender
+        double genderBase = isMale ? 66.0 : 655.0;
+        double weightBase = isMale ? 13.7 : 9.6;
+        double heightBase = isMale ? 5.0 : 1.8;
+        double ageBase = isMale ? 6.8 : 4.7;
+
+        double bmr = genderBase + (weightBase * currentWeight) + (heightBase * height) - (ageBase * getAge());
+        return (int) bmr;
+    }
+
+    public static int calculateTDEE() {
+        double tdee = activityLvl * calculateBMR();
+        return (int) tdee;
+    }
+
+    public static int calculateCalsToConsume() {
+        int tdee = calculateTDEE();
+        int deficit = tdee / 5; // 20%
+        return tdee - deficit;
+    }
+
+    public static Macros calculateMacros() {
+        int CALS_PER_PROT_CARB = 4;
+        int CALS_PER_FAT = 9;
+
+        int calories = calculateCalsToConsume();
+
+        // 40 - 40 - 20
+        int fatCals = (int) (calories * 0.2);
+        int proteinCals = (int) (calories * 0.4);
+        int carbohydrateCals = (int) (calories * 0.4);
+
+        int fat = fatCals / CALS_PER_FAT;
+        int protein = proteinCals / CALS_PER_PROT_CARB;
+        int carbohydrate = carbohydrateCals / CALS_PER_PROT_CARB;
+
+        return new Macros(fat, protein, carbohydrate, calories);
+    }
+
+    public static int calculateWeeksToReachGoal() {
+        double safeLossPerWeek = 0.45359237; // 1 pound / 0.45kg per week
+        double currWeight = (double) currentWeight;
+
+        int weeks = 0;
+        while(currWeight >= goalWeight) {
+            currWeight -= safeLossPerWeek;
+            weeks++;
+        }
+
+        return weeks;
+    }
+
+    public static void setLoadedFields(Profile profile) {
+        gender = profile.gender;
+        birthday = profile.birthday;
+        height = profile.height;
     }
 
     public static int getHeight() {
@@ -77,7 +141,7 @@ public class User {
         User.goalWeight = goalWeight;
     }
 
-    public static void setActivityLvl(int activityLvl) {
+    public static void setActivityLvl(double activityLvl) {
         User.activityLvl = activityLvl;
     }
 
@@ -85,6 +149,14 @@ public class User {
 
     public static Date getBirthday() {
         return birthday;
+    }
+
+    public static void setWorkoutsPerWeek(int workoutsPerWeek) {
+        User.workoutsPerWeek = workoutsPerWeek;
+    }
+
+    public static void setMinutesPerWorkout(int minutesPerWorkout) {
+        User.minutesPerWorkout = minutesPerWorkout;
     }
 
     public static String getBirthdayFormated() {
