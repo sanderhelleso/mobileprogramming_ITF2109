@@ -41,6 +41,7 @@ public class IntentSelector {
                             } else {
                                 QueryDocumentSnapshot document = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);
                                 Profile profile = document.toObject(Profile.class);
+                                User.setLoadedFields(profile);
 
                                 // user has profile, but no goal setup, goto Goal setup
                                 if (!profile.hasGoal) {

@@ -46,7 +46,7 @@ public class User {
     public static void saveGoal() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference goalsRef = db.collection("goals");
-        Goal goal = new Goal(getUID(), currentWeight, currentWeight, goalWeight, activityLvl, intensityLvl, 10);
+        Goal goal = new Goal(getUID(), currentWeight, currentWeight, goalWeight, activityLvl, intensityLvl, 10, calculateMacros());
         goalsRef.add(goal);
     }
 
@@ -80,6 +80,24 @@ public class User {
         return tdee - deficit;
     }
 
+    public static Macros calculateMacros() {
+        int CALS_PER_PROT_CARB = 4;
+        int CALS_PER_FAT = 9;
+
+        int calories = calculateCalsToConsume();
+
+        // 40 - 40 - 20
+        int fatCals = (int) (calories * 0.2);
+        int proteinCals = (int) (calories * 0.4);
+        int carbohydrateCals = (int) (calories * 0.4);
+
+        int fat = fatCals / CALS_PER_FAT;
+        int protein = proteinCals / CALS_PER_PROT_CARB;
+        int carbohydrate = carbohydrateCals / CALS_PER_PROT_CARB;
+
+        return new Macros(fat, protein, carbohydrate, calories);
+    }
+
     public static int calculateWeeksToReachGoal() {
         double safeLossPerWeek = 0.45359237; // 1 pound / 0.45kg per week
         double currWeight = (double) currentWeight;
@@ -91,6 +109,12 @@ public class User {
         }
 
         return weeks;
+    }
+
+    public static void setLoadedFields(Profile profile) {
+        gender = profile.gender;
+        birthday = profile.birthday;
+        height = profile.height;
     }
 
     public static int getHeight() {
