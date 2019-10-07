@@ -66,7 +66,10 @@ public class GoalWorkoutFreqActivity extends AppCompatActivity {
 
     public void save(View view) {
         String selectedBtnStrId = getResources().getResourceEntryName(selectedWorkoutIntensityID);
+        User.setWorkoutsPerWeek(workoutsPerWeekSeekBar.getValue());
+        User.setMinutesPerWorkout(minutesPerWorkoutSeekBar.getValue());
         User.setIntensityLvl(intensityLvls.get(selectedBtnStrId));
+
         User.saveGoal();
 
         IntentSelector.replaceActivity(new Intent(this, HomeActivity.class), this);
