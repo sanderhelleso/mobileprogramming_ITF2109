@@ -39,6 +39,11 @@ public class GoalWorkoutFreqActivity extends AppCompatActivity {
         initMinutesPerWorkoutSeekBar();
     }
 
+    @Override public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.fade_in, R.anim.right_to_left);
+    }
+
     private void fillWorkoutIntensityMap() {
         intensityLvls.put("light", 1);
         intensityLvls.put("moderate", 2);

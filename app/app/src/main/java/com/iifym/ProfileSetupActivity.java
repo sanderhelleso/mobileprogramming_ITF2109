@@ -94,7 +94,10 @@ public class ProfileSetupActivity extends AppCompatActivity {
         if (canNextStage()) {
             User.setHeight(heightSeekBar.getValue());
             User.saveProfile();
+
             IntentSelector.replaceActivity(new Intent(this, GoalStatsActivity.class), this);
+            overridePendingTransition(R.anim.enter, R.anim.fade_out);
+
             Toast.makeText(this, "Profile successfully created!", Toast.LENGTH_LONG).show();
         }
     }

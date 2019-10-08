@@ -41,5 +41,6 @@ public class GoalStatsActivity extends AppCompatActivity {
         User.setGoalWeight(goalWeightSeekBar.getValue());
 
         startActivity(new Intent(this, GoalActivityLvlActivity.class));
+        overridePendingTransition(R.anim.enter, R.anim.fade_out);
     }
 }
