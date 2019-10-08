@@ -38,7 +38,7 @@ public class ProfileSetupActivity extends AppCompatActivity {
 
     private void initDropdown() {
         final int COLOR_INDIGO = getResources().getColor(R.color.indigo);
-        final int COLOR_HINT = getResources().getColor(R.color.hint);
+        final int COLOR_LIGHT = getResources().getColor(R.color.lightGrey);
 
         Spinner spinner = findViewById(R.id.gender_dropdown);
         HintAdapter adapter = new HintAdapter(this, R.layout.support_simple_spinner_dropdown_item, dropdownOptions);
@@ -51,7 +51,7 @@ public class ProfileSetupActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 TextView view = (TextView) parentView.getChildAt(0);
-                view.setTextColor(position == dropdownOptions.length - 1 ? COLOR_HINT : COLOR_INDIGO);
+                view.setTextColor(position == dropdownOptions.length - 1 ? COLOR_LIGHT : COLOR_INDIGO);
                 view.setTypeface(view.getTypeface(), Typeface.BOLD);
                 view.setTextSize(18);
 
