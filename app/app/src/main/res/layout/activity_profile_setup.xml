@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileSetupActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile Setup"
+        android:textColor="#444444"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.139" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="305dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:text="Welcome to IIFYM! Lets start by creating your profile aswell as setting your first goal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="178dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="52dp"
+        android:text="My gender is"
+        android:textColor="#9E9E9E"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/gender_dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.197"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.931" />
+
+    <Spinner
+        android:id="@+id/gender_dropdown"
+        android:layout_width="329dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="48dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/height_seekBar" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My birthday is"
+        android:textColor="#9E9E9E"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/birthdayInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gender_dropdown"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/birthdayInput"
+        android:layout_width="331dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="56dp"
+        android:drawableRight="@drawable/ic_date_range_indigo_24dp"
+        android:ems="10"
+        android:hint="Select date of birth"
+        android:inputType="date"
+        android:paddingHorizontal="10dp"
+        android:textColor="@color/indigo"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:theme="@style/BaseEditText"
+        app:layout_constraintTop_toBottomOf="@+id/gender_dropdown" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="325dp"
+        android:layout_height="2px"
+        android:background="#9e9e9e"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gender_dropdown" />
+
+    <TextView
+        android:id="@+id/height_text"
+        android:layout_width="128dp"
+        android:layout_height="47dp"
+        android:text="180"
+        android:textAlignment="textEnd"
+        android:textColor="@color/hint"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/height_seekBar"
+        app:layout_constraintEnd_toStartOf="@+id/textView12"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/currentWeight_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Height is"
+        android:textColor="#9E9E9E"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/height_seekBar"
+        app:layout_constraintEnd_toStartOf="@+id/height_text"
+        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="33dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="40dp"
+        android:paddingLeft="5dp"
+        android:text="CM"
+        android:textColor="@color/hint"
+        app:layout_constraintBottom_toTopOf="@+id/height_seekBar"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <SeekBar
+        android:id="@+id/height_seekBar"
+        style="@android:style/Widget.DeviceDefault.Light.SeekBar"
+        android:layout_width="357dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="96dp"
+        android:max="230"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/next_stage_button"
+        style="@style/main_button"
+        android:layout_height="71dp"
+        android:drawableRight="@drawable/ic_arrow_forward_white_24dp"
+        android:onClick="nextStage"
+        android:elevation="4dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="25dp"
+        android:text="Save and continue to Goal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birthdayInput"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
