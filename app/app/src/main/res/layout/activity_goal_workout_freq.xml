@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GoalWorkoutFreqActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Workouts"
+        android:textColor="#444444"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.159" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Creating a new goal"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 / 3"
+        android:textColor="@color/hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <SeekBar
+        android:id="@+id/workouts_per_week_seekBar"
+        style="@android:style/Widget.DeviceDefault.Light.SeekBar"
+        android:layout_width="344dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="400dp"
+        android:max="7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+        android:id="@+id/minutes_per_workout_seekBar"
+        style="@android:style/Widget.DeviceDefault.Light.SeekBar"
+        android:layout_width="344dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="296dp"
+        android:max="120"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/currentWeight_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Minutes per Workout"
+        android:textColor="#9E9E9E"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/minutes_per_workout_seekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/currentWeight_text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="16dp"
+        android:text="Intensity of Workout"
+        android:textColor="#9E9E9E"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/currentWeight_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Workouts per Week"
+        android:textColor="#9E9E9E"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/workouts_per_week_seekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/minutes_per_workout_text"
+        android:layout_width="128dp"
+        android:layout_height="47dp"
+        android:text="60"
+        android:textAlignment="textEnd"
+        android:textColor="@color/hint"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/minutes_per_workout_seekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/currentWeight_text2" />
+
+    <TextView
+        android:id="@+id/workouts_per_week_text"
+        android:layout_width="128dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="48dp"
+        android:text="60"
+        android:textAlignment="textEnd"
+        android:textColor="@color/hint"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/workouts_per_week_seekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.967"
+        app:layout_constraintStart_toEndOf="@+id/currentWeight_text" />
+
+    <Button
+        android:id="@+id/light"
+        style="@style/fillable_button"
+        android:layout_width="145dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="48dp"
+        android:enabled="false"
+        android:onClick="setIntensityLvl"
+        android:text="LIGHT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/minutes_per_workout_seekBar"
+        app:layout_constraintVertical_bias="0.209" />
+
+    <Button
+        android:id="@+id/moderate"
+        style="@style/fillable_button"
+        android:layout_width="145dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="48dp"
+        android:onClick="setIntensityLvl"
+        android:text="MODERATE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintStart_toEndOf="@+id/light"
+        app:layout_constraintTop_toBottomOf="@+id/minutes_per_workout_seekBar"
+        app:layout_constraintVertical_bias="0.209" />
+
+    <Button
+        android:id="@+id/difficult"
+        style="@style/fillable_button"
+        android:layout_width="145dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="48dp"
+        android:onClick="setIntensityLvl"
+        android:text="DIFFICULT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/light"
+        app:layout_constraintVertical_bias="0.104" />
+
+    <Button
+        android:id="@+id/intense"
+        style="@style/fillable_button"
+        android:layout_width="145dp"
+        android:layout_height="57dp"
+        android:onClick="setIntensityLvl"
+        android:text="INTENSE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.328"
+        app:layout_constraintStart_toEndOf="@+id/difficult"
+        app:layout_constraintTop_toBottomOf="@+id/moderate"
+        app:layout_constraintVertical_bias="0.106" />
+
+    <Button
+        android:id="@+id/next_stage_button"
+        style="@style/main_button"
+        android:layout_width="415dp"
+        android:layout_height="71dp"
+        android:drawableRight="@drawable/ic_check_white_24dp"
+        android:onClick="save"
+        android:paddingLeft="50dp"
+        android:paddingRight="25dp"
+        android:text="Create Goal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/height_seekBar"
+        app:layout_constraintVertical_bias="0.367" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

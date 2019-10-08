@@ -5,3 +5,10 @@
 /docs/*.log
 /docs/*.synctex.gz
 /docs/*.pdf
+
+/app/.gradle
+/app/.idea
+/app/gradle
+/app/app/build
+/app/app/src/androidTest
+app/app/google-services.json
