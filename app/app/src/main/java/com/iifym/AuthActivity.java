@@ -18,11 +18,12 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     public void gotoLogin(View view) {
-
         startActivity(new Intent(this, LoginActivity.class));
+        overridePendingTransition(R.anim.enter, R.anim.fade_out);
     }
 
     public void gotoSignup(View view) {
         startActivity(new Intent(this, SignupActivity.class));
+        overridePendingTransition(R.anim.enter, R.anim.fade_out);
     }
 }

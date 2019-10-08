@@ -25,6 +25,11 @@ public class GoalActivityLvlActivity extends AppCompatActivity {
         selectedLvlID = getResources().getIdentifier("sedentary", "id", getPackageName());
     }
 
+    @Override public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.fade_in, R.anim.right_to_left);
+    }
+
     private void fillActivityLvlMap() {
         activityLvls.put("sedentary", 1.3);
         activityLvls.put("light_active", 1.375);
@@ -43,5 +48,6 @@ public class GoalActivityLvlActivity extends AppCompatActivity {
         User.setActivityLvl(activityLvls.get(selectedBtnStrId));
 
         startActivity(new Intent(this, GoalWorkoutFreqActivity.class));
+        overridePendingTransition(R.anim.left_ro_right, R.anim.fade_out);
     }
 }

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.view.View;
 import android.widget.EditText;
 
+import com.iifym.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,7 +41,7 @@ public class DatePicker implements View.OnFocusChangeListener, DatePickerDialog.
     @Override
     public void onFocusChange(View view, boolean hasFocus) {
         if (hasFocus) {
-            new DatePickerDialog(ctx, this,
+            new DatePickerDialog(ctx, R.style.DialogTheme, this,
                     calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),
                     calendar.get(Calendar.DAY_OF_MONTH)

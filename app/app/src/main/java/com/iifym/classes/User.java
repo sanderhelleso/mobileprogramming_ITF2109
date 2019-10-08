@@ -1,8 +1,19 @@
 package com.iifym.classes;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.iifym.AuthActivity;
+import com.iifym.GoalStatsActivity;
+import com.iifym.HomeActivity;
+import com.iifym.ProfileSetupActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,6 +30,7 @@ public class User {
     private static int intensityLvl;
     private static int workoutsPerWeek;
     private static int minutesPerWorkout;
+    private static boolean hasGoal;
 
     private static final SimpleDateFormat D_FORMAT = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
 
@@ -45,9 +57,38 @@ public class User {
 
     public static void saveGoal() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String uid = getUID();
         CollectionReference goalsRef = db.collection("goals");
-        Goal goal = new Goal(getUID(), currentWeight, currentWeight, goalWeight, activityLvl, intensityLvl, 10, calculateMacros());
+
+        // add the new created goal
+        Goal goal = new Goal(uid, currentWeight, currentWeight, goalWeight, activityLvl, intensityLvl, 10, calculateMacros());
         goalsRef.add(goal);
+
+        if (!hasGoal) {
+            setProfileHasGoal(db, uid);
+        }
+
+    }
+
+    private static void setProfileHasGoal(FirebaseFirestore db, String uid) {
+        final CollectionReference profilesRef = db.collection("profiles");
+        Query query = profilesRef.whereEqualTo("uid", uid).limit(1);
+
+        query.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            QueryDocumentSnapshot document = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);
+
+                            Profile profile = document.toObject(Profile.class);
+                            profile.hasGoal = true;
+
+                            profilesRef.document(document.getId()).set(profile);
+                        }
+
+                    }
+                });
     }
 
     public static String getUID() {
@@ -115,6 +156,7 @@ public class User {
         gender = profile.gender;
         birthday = profile.birthday;
         height = profile.height;
+        hasGoal = profile.hasGoal;
     }
 
     public static int getHeight() {

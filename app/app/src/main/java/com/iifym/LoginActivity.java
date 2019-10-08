@@ -42,8 +42,14 @@ public class LoginActivity extends AppCompatActivity {
         this.loginBtn = findViewById(R.id.login_button);
     }
 
+    @Override public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.fade_in, R.anim.right_to_left);
+    }
+
     public void back(View view) {
         finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.right_to_left);
     }
 
     public void login(View view) {
@@ -54,7 +60,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
         
-        // do firebase lookup here
         this.signIn(email, pass);
     }
 

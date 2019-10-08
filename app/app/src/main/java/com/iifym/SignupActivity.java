@@ -43,8 +43,14 @@ public class SignupActivity extends AppCompatActivity {
         this.signupBtn = findViewById(R.id.signup_button);
     }
 
+    @Override public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.fade_in, R.anim.right_to_left);
+    }
+
     public void back(View view) {
         finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.right_to_left);
     }
 
     public void signup(View view) {

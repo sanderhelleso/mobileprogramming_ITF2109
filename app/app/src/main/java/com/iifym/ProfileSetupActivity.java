@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -36,8 +37,8 @@ public class ProfileSetupActivity extends AppCompatActivity {
     }
 
     private void initDropdown() {
-        final int COLOR_MAIN_RED = getResources().getColor(R.color.mainRed);
-        final int COLOR_HINT = getResources().getColor(R.color.hint);
+        final int COLOR_INDIGO = getResources().getColor(R.color.indigo);
+        final int COLOR_LIGHT = getResources().getColor(R.color.lightGrey);
 
         Spinner spinner = findViewById(R.id.gender_dropdown);
         HintAdapter adapter = new HintAdapter(this, R.layout.support_simple_spinner_dropdown_item, dropdownOptions);
@@ -45,12 +46,13 @@ public class ProfileSetupActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setSelection(adapter.getCount());
-        spinner.getBackground().setColorFilter(COLOR_MAIN_RED, PorterDuff.Mode.SRC_ATOP);
+        spinner.getBackground().setColorFilter(COLOR_INDIGO, PorterDuff.Mode.SRC_ATOP);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 TextView view = (TextView) parentView.getChildAt(0);
-                view.setTextColor(position == dropdownOptions.length - 1 ? COLOR_HINT : COLOR_MAIN_RED);
+                view.setTextColor(position == dropdownOptions.length - 1 ? COLOR_LIGHT : COLOR_INDIGO);
+                view.setTypeface(view.getTypeface(), Typeface.BOLD);
                 view.setTextSize(18);
 
                 selectedGender = dropdownOptions[position];
@@ -92,7 +94,10 @@ public class ProfileSetupActivity extends AppCompatActivity {
         if (canNextStage()) {
             User.setHeight(heightSeekBar.getValue());
             User.saveProfile();
+
             IntentSelector.replaceActivity(new Intent(this, GoalStatsActivity.class), this);
+            overridePendingTransition(R.anim.enter, R.anim.fade_out);
+
             Toast.makeText(this, "Profile successfully created!", Toast.LENGTH_LONG).show();
         }
     }
