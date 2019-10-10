@@ -10,4 +10,5 @@
     <color name="mainPurple">#8e54e9</color>
     <color name="indigo">#8c9eff</color>
     <color name="black_overlay">#66000000</color>
+    <color name="bg">#e8eaf6</color>
 </resources>

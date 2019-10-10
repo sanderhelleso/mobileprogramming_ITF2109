@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowBackground">#e8eaf6</item>
+        <item name="android:windowBackground">@color/bg</item>
         <item name="android:fontFamily">@font/poppins_light</item>
     </style>
 
