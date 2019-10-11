@@ -62,24 +62,45 @@
             app:layout_anchor="@id/bottom_app_bar" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <TextView
-                android:id="@+id/textView13"
-                android:layout_width="165dp"
-                android:layout_height="78dp"
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="104dp"
-                android:fontFamily="@font/poppins_light"
-                android:text="Home"
-                android:textColor="#222222"
-                android:textSize="36sp"
-                android:textStyle="bold"
+                android:text="Calories to hit"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.202"
+                app:layout_constraintHorizontal_bias="0.155"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="117dp"
+                android:layout_height="61dp"
+                android:text="2399"
+                android:textColor="#202020"
+                android:textSize="42.5sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.166"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="189dp"
+                android:layout_height="197dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.303"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.134" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
