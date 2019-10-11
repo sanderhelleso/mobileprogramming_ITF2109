@@ -64,111 +64,152 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_anchor="@+id/constraintLayout"
+            app:layout_anchorGravity="center">
 
-            <View
-                android:id="@+id/view6"
-               android:layout_width="18dp"
-                android:layout_height="16dp"
-                android:layout_marginTop="48dp"
-                android:background="#aca8ff"
-                android:elevation="4dp"
-                app:layout_constraintEnd_toStartOf="@+id/textView15"
-                app:layout_constraintHorizontal_bias="0.83"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="50dp"
-                android:layout_height="19dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="284dp"
-                android:text="Protein"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="50dp"
-                android:layout_height="19dp"
-                android:layout_marginTop="48dp"
-                android:layout_marginEnd="284dp"
-                android:text="Fat"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-            <View
-                android:id="@+id/view5"
-                android:layout_width="18dp"
-                android:layout_height="16dp"
-                android:layout_marginTop="28dp"
-                android:background="#8C9EFF"
-                android:elevation="4dp"
-                app:layout_constraintEnd_toStartOf="@+id/textView15"
-                app:layout_constraintHorizontal_bias="0.83"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="104dp"
-                android:text="Calories to hit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.155"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="119dp"
-                android:layout_height="60dp"
-                android:text="2399"
-                android:textColor="#202020"
-                android:textSize="45sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.166"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pieChart"
-                android:layout_width="189dp"
-                android:layout_height="197dp"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="378dp"
+                android:layout_height="220dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="3dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.375"
-                app:layout_constraintStart_toEndOf="@+id/textView8"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.172" />
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="18dp"
-                android:layout_height="16dp"
-                android:layout_marginTop="8dp"
-                android:background="#80cbc4"
-                android:elevation="4dp"
-                app:layout_constraintEnd_toStartOf="@+id/textView15"
-                app:layout_constraintHorizontal_bias="0.83"
+                app:layout_constraintHorizontal_bias="0.478"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.096">
 
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="50dp"
-                android:layout_height="19dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="284dp"
-                android:text="Carbs"
-                android:textSize="12sp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pieChart"
+                        android:layout_width="189dp"
+                        android:layout_height="197dp"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.521" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="119dp"
+                        android:layout_height="60dp"
+                        android:layout_marginBottom="112dp"
+                        android:text="2399"
+                        android:textColor="#202020"
+                        android:textSize="45sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/pieChart"
+                        app:layout_constraintHorizontal_bias="0.553"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Calories to hit"
+                        app:layout_constraintBottom_toTopOf="@+id/textView8"
+                        app:layout_constraintEnd_toStartOf="@+id/pieChart"
+                        app:layout_constraintHorizontal_bias="0.366"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0" />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="18dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="28dp"
+                        android:background="#80cbc4"
+                        android:elevation="4dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView15" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="50dp"
+                        android:layout_height="19dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Carbs"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toStartOf="@+id/pieChart"
+                        app:layout_constraintHorizontal_bias="0.142"
+                        app:layout_constraintStart_toEndOf="@+id/view2"
+                        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                    <View
+                        android:id="@+id/view5"
+                        android:layout_width="18dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginTop="28dp"
+                        android:background="#8C9EFF"
+                        android:elevation="4dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView15" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="50dp"
+                        android:layout_height="19dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Protein"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toStartOf="@+id/pieChart"
+                        app:layout_constraintHorizontal_bias="0.142"
+                        app:layout_constraintStart_toEndOf="@+id/view5"
+                        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+                    <View
+                        android:id="@+id/view6"
+                        android:layout_width="18dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#aca8ff"
+                        android:elevation="4dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="50dp"
+                        android:layout_height="19dp"
+                        android:layout_marginTop="4dp"
+                        android:text="Fat"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/pieChart"
+                        app:layout_constraintHorizontal_bias="0.142"
+                        app:layout_constraintStart_toEndOf="@+id/view6"
+                        app:layout_constraintTop_toBottomOf="@+id/textView18"
+                        app:layout_constraintVertical_bias="0.088" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view3"
+                android:layout_width="378dp"
+                android:layout_height="220dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                app:layout_constraintHorizontal_bias="0.515"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_view"
+                app:layout_constraintVertical_bias="0.192"></androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
