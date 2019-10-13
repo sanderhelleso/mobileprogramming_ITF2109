@@ -92,7 +92,14 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initLineChart() {
         LineChart lineChart = findViewById(R.id.lineChart);
-        LineDataSet lineDataSet = new LineDataSet(setLineEntries(), "");
+        ArrayList<Entry> entries = setLineEntries();
+
+        if (entries.size() == 0) {
+            lineChart.setVisibility(View.INVISIBLE);
+            return;
+        }
+
+        LineDataSet lineDataSet = new LineDataSet(entries, "");
 
         lineChart.getXAxis().setDrawGridLines(false);
         lineChart.getAxisLeft().setDrawGridLines(false);
