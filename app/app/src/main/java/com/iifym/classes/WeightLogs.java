@@ -3,6 +3,7 @@ package com.iifym.classes;
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +11,8 @@ import java.util.List;
 @IgnoreExtraProperties
 public class WeightLogs {
     public Date lastLogged;
-    public List<Log> logs;
+    public List<Log> logs = new ArrayList<>();
+    public List<Double> averageWeights = new ArrayList<>();
 
     public WeightLogs() {}
 
@@ -37,6 +39,10 @@ public class WeightLogs {
 
     public List<Log> getLogs() {
         return logs;
+    }
+
+    public List<Double> getAverageWeights() {
+        return averageWeights;
     }
 
     public void addLog(Log log) {

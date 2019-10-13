@@ -21,6 +21,7 @@ import com.iifym.ProfileSetupActivity;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.crypto.Mac;
@@ -209,6 +210,10 @@ public class User {
 
     public static Macros getMacros() {
         return goal.macros;
+    }
+
+    public static WeightLogs getWeightLogs() {
+        return goal.weightLogs;
     }
 
     public static void setWorkoutsPerWeek(int workoutsPerWeek) {

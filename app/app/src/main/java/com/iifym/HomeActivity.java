@@ -23,8 +23,10 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.iifym.classes.Log;
 import com.iifym.classes.Macros;
 import com.iifym.classes.User;
+import com.iifym.classes.WeightLogs;
 
 import java.util.ArrayList;
 
@@ -124,23 +126,12 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<Entry> setLineEntries() {
         ArrayList<Entry> lineEntries = new ArrayList<>();
+        WeightLogs weightLogs = User.getWeightLogs();
 
-        lineEntries.add(new Entry(0, 4));
-        lineEntries.add(new Entry(1, 3));
-        lineEntries.add(new Entry(2, 4));
-        lineEntries.add(new Entry(3, 3));
-        lineEntries.add(new Entry(4, 2));
-        lineEntries.add(new Entry(5, 2));
-        lineEntries.add(new Entry(6, 3));
-        lineEntries.add(new Entry(7, 2));
-        lineEntries.add(new Entry(8, 4));
-        lineEntries.add(new Entry(9, 3));
-        lineEntries.add(new Entry(10, 4));
-        lineEntries.add(new Entry(11, 3));
-        lineEntries.add(new Entry(12, 2));
-        lineEntries.add(new Entry(13, 2));
-        lineEntries.add(new Entry(14, 3));
-        lineEntries.add(new Entry(15, 1));
+        int i = 1;
+        for (double weight : weightLogs.getAverageWeights()) {
+            lineEntries.add(new Entry(i++, (int)weight));
+        }
 
         return lineEntries;
     }
