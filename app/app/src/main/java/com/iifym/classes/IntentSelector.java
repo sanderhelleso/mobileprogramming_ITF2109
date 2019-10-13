@@ -26,39 +26,59 @@ public class IntentSelector {
         String uid = user.getUid();
 
         CollectionReference profilesRef = db.collection("profiles");
-        Query query = profilesRef.whereEqualTo("uid", uid).limit(1);
+        Query profilesQuery = profilesRef.whereEqualTo("uid", uid).limit(1);
 
-        query.get()
+        CollectionReference goalsRef = db.collection("goals");
+        final Query goalsQuery = goalsRef.whereEqualTo("uid", uid).limit(1);
+
+        profilesQuery.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            boolean isEmpty = task.getResult().isEmpty();
+                    public void onComplete(@NonNull Task<QuerySnapshot> profileTask) {
+                        if (profileTask.isSuccessful()) {
+                            boolean isEmpty = profileTask.getResult().isEmpty();
+                            boolean mustFetchGoal = true;
 
                             // if no profile, goto Profile Setup
                             if (isEmpty) {
                                 intent.setClass(activity, ProfileSetupActivity.class);
                             } else {
-                                QueryDocumentSnapshot document = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);
+                                QueryDocumentSnapshot document = (QueryDocumentSnapshot) profileTask.getResult().getDocuments().get(0);
                                 Profile profile = document.toObject(Profile.class);
                                 User.setLoadedFields(profile);
 
                                 // user has profile, but no goal setup, goto Goal setup
                                 if (!profile.hasGoal) {
                                     intent.setClass(activity, GoalStatsActivity.class);
+                                    mustFetchGoal = false;
                                 } else {
+                                    goalsQuery.get()
+                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>(){
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> goalsTask) {
+                                                    if (goalsTask.isSuccessful()) {
+                                                        QueryDocumentSnapshot document = (QueryDocumentSnapshot) goalsTask.getResult().getDocuments().get(0);
+                                                        Goal goal = document.toObject(Goal.class);
+                                                        User.setLoadedGoal(goal);
 
-                                    // user has goal, goto Home
-                                    intent.setClass(activity, HomeActivity.class);
+                                                        // user has goal, goto Home
+                                                        intent.setClass(activity, HomeActivity.class);
+                                                        replaceActivity(intent, activity);
+                                                    }
+                                                }
+                                            });
+                                }
+
+                                if (!mustFetchGoal) {
+                                    replaceActivity(intent, activity);
                                 }
                             }
 
                         } else {
                             auth.signOut();
                             intent.setClass(activity, AuthActivity.class);
+                            replaceActivity(intent, activity);
                         }
-
-                        replaceActivity(intent, activity);
                     }
                 });
     }

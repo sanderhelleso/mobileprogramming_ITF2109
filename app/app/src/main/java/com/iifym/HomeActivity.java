@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -22,6 +23,8 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.iifym.classes.Macros;
+import com.iifym.classes.User;
 
 import java.util.ArrayList;
 
@@ -61,9 +64,13 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayList<PieEntry> setPieEntries() {
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
 
-        pieEntries.add(new PieEntry(200, 0));
-        pieEntries.add(new PieEntry(180, 1));
-        pieEntries.add(new PieEntry(50, 2));
+        Macros macros = User.getMacros();
+        TextView caloriesTxt = findViewById(R.id.calories);
+        caloriesTxt.setText(Integer.toString(macros.getCalories()));
+
+        pieEntries.add(new PieEntry(macros.getCarbohydrate(), 0));
+        pieEntries.add(new PieEntry(macros.getProtein(), 1));
+        pieEntries.add(new PieEntry(macros.getFat(), 2));
 
         return pieEntries;
     }

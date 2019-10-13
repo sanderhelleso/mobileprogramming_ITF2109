@@ -20,6 +20,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.crypto.Mac;
+
 public class User {
     private static String gender;
     private static Date birthday;
@@ -31,6 +33,7 @@ public class User {
     private static int workoutsPerWeek;
     private static int minutesPerWorkout;
     private static boolean hasGoal;
+    private static Goal goal;
 
     private static final SimpleDateFormat D_FORMAT = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
 
@@ -159,6 +162,10 @@ public class User {
         hasGoal = profile.hasGoal;
     }
 
+    public static void setLoadedGoal(Goal goal) {
+        User.goal = goal;
+    }
+
     public static int getHeight() {
         return height;
     }
@@ -191,6 +198,10 @@ public class User {
 
     public static Date getBirthday() {
         return birthday;
+    }
+
+    public static Macros getMacros() {
+        return goal.macros;
     }
 
     public static void setWorkoutsPerWeek(int workoutsPerWeek) {

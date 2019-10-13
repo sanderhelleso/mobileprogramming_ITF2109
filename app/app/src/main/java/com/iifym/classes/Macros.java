@@ -1,11 +1,16 @@
 package com.iifym.classes;
 
+import com.google.firebase.firestore.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class Macros {
 
     private int fat;
     private int protein;
     private int carbohydrate;
     private int calories;
+
+    public Macros() {}
 
     public Macros(int fat, int protein, int carbohydrate, int calories) {
         this.fat = fat;
