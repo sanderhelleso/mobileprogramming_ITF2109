@@ -142,8 +142,6 @@ public class HomeActivity extends AppCompatActivity {
         lineEntries.add(new Entry(14, 3));
         lineEntries.add(new Entry(15, 1));
 
-
-
         return lineEntries;
     }
  }

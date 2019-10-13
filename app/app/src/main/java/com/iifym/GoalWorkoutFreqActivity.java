@@ -75,8 +75,6 @@ public class GoalWorkoutFreqActivity extends AppCompatActivity {
         User.setMinutesPerWorkout(minutesPerWorkoutSeekBar.getValue());
         User.setIntensityLvl(intensityLvls.get(selectedBtnStrId));
 
-        User.saveGoal();
-
-        IntentSelector.replaceActivity(new Intent(this, HomeActivity.class), this);
+        User.saveGoal(this);
     }
 }

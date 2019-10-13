@@ -1,5 +1,8 @@
 package com.iifym.classes;
 
+import android.app.Activity;
+import android.content.Intent;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -58,19 +61,23 @@ public class User {
         profilesRef.add(profile);
     }
 
-    public static void saveGoal() {
+    public static void saveGoal(Activity activity) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String uid = getUID();
         CollectionReference goalsRef = db.collection("goals");
 
         // add the new created goal
-        Goal goal = new Goal(uid, currentWeight, currentWeight, goalWeight, activityLvl, intensityLvl, 10, calculateMacros());
+        Goal goal = new Goal(uid, currentWeight, currentWeight, goalWeight, activityLvl,
+                intensityLvl, calculateWeeksToReachGoal(), calculateMacros(), new WeightLogs());
+
         goalsRef.add(goal);
+        User.goal = goal;
 
         if (!hasGoal) {
             setProfileHasGoal(db, uid);
         }
 
+        IntentSelector.replaceActivity(new Intent(activity, HomeActivity.class), activity);
     }
 
     private static void setProfileHasGoal(FirebaseFirestore db, String uid) {

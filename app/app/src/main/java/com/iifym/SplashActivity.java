@@ -37,7 +37,7 @@ public class SplashActivity extends AppCompatActivity {
         final FirebaseUser user = auth.getCurrentUser();
         final Intent intent = new Intent();
         final Activity activity = this;
-        //auth.signOut();
+        auth.signOut();
 
         new Handler().postDelayed(new Runnable() {
             @Override
