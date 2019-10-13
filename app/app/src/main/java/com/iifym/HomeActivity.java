@@ -28,6 +28,8 @@ import com.iifym.classes.Macros;
 import com.iifym.classes.User;
 import com.iifym.classes.WeightLogs;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
@@ -95,7 +97,11 @@ public class HomeActivity extends AppCompatActivity {
         ArrayList<Entry> entries = setLineEntries();
 
         if (entries.size() == 0) {
-            lineChart.setVisibility(View.INVISIBLE);
+            lineChart.setVisibility(View.GONE);
+
+            TextView placeholder = findViewById(R.id.linechart_placeholder);
+            placeholder.setVisibility(View.VISIBLE);
+
             return;
         }
 
