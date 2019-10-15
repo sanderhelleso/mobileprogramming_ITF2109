@@ -3,6 +3,7 @@ package com.iifym.classes;
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
 import java.sql.Time;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,6 +32,10 @@ public class WeightLogs {
         boolean sameYear = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
 
         return !(sameDay && sameYear);
+    }
+
+    public long getDaysSinceLastLogged() {
+        return (int)((lastLogged.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
     }
 
     public Date getLastLogged() {

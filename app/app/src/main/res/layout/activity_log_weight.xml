@@ -71,6 +71,7 @@
         android:layout_height="71dp"
         android:drawableRight="@drawable/ic_check_white_24dp"
         android:elevation="4dp"
+        android:onClick="logWeight"
         android:paddingLeft="50dp"
         android:paddingRight="25dp"
         android:text="SAVE"
