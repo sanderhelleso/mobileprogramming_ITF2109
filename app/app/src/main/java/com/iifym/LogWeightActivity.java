@@ -50,7 +50,7 @@ public class LogWeightActivity extends AppCompatActivity {
         }
 
         final double SAFE_WEEKLY_LOSS = 0.90718474;
-        double MAX_OFFSET = Math.ceil(User.getWeightLogs().getDaysSinceLastLogged() / 7.0) * (SAFE_WEEKLY_LOSS * 4);
+        double MAX_OFFSET = Math.ceil(User.getWeightLogs().getDaysSinceLastLogged() / 7.0) * (SAFE_WEEKLY_LOSS * 3);
 
         double weightInputValue = Double.parseDouble(inputVal);
         double currToMax = currentWeight + MAX_OFFSET;
@@ -60,14 +60,31 @@ public class LogWeightActivity extends AppCompatActivity {
 
         if (notValidInput) {
             String maxVal = String.format("%.2f", weightInputValue >  currToMax ? currToMax : currToLow);
-            String limitMsg = "You entered a value that is unrealistic.\n\n" +
-                    "The maximum weight since your last tracked log should not be any more than " + maxVal + "kg";
+            String limitMsg = "\nThe maximum weight since your last tracked log should not be more or less than " +
+                    maxVal + "kg to progress in a healthy speed.\n\nDo you want to proceed?\n";
 
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Confirm add log");
+            builder.setMessage(limitMsg)
+                    .setPositiveButton("Yes, Add to log", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            addLog();
+                        }
+                    })
+                    .setNegativeButton("No, Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {}
+                    });
 
-            alertDialog.setTitle("Confirm weight log value");
-            alertDialog.setMessage(limitMsg);
-            alertDialog.setIcon(R.drawable.ic_close_black_24dp);
+            final AlertDialog alertDialog = builder.create();
+            alertDialog.setOnShowListener( new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface arg0) {
+                    int color = getResources().getColor(R.color.indigo);
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(color);
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(color);
+                }
+            });
+
             alertDialog.show();
         }
 
@@ -76,8 +93,12 @@ public class LogWeightActivity extends AppCompatActivity {
     }
 
     public void logWeight(View view) {
-        if (!validateInput()) return;
+        if (validateInput())  {
+               addLog();
+        }
+    }
 
+    private void addLog() {
 
     }
 }
