@@ -1,8 +1,11 @@
 package com.iifym;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.view.View;
 import android.widget.EditText;
@@ -39,29 +42,42 @@ public class LogWeightActivity extends AppCompatActivity {
     }
 
     private boolean validateInput() {
-        final double TWO_POUNDS = 0.90718474;
-        double MAX_OFFSET = Math.ceil(User.getWeightLogs().getDaysSinceLastLogged() / 7.0) * TWO_POUNDS;
+        String inputVal = weightInput.getText().toString();
 
-        double weightInputValue = Double.parseDouble(weightInput.getText().toString());
+        if (inputVal.equals("")) {
+            Toast.makeText(this, "Please enter your weight for the day", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        final double SAFE_WEEKLY_LOSS = 0.90718474;
+        double MAX_OFFSET = Math.ceil(User.getWeightLogs().getDaysSinceLastLogged() / 7.0) * (SAFE_WEEKLY_LOSS * 4);
+
+        double weightInputValue = Double.parseDouble(inputVal);
         double currToMax = currentWeight + MAX_OFFSET;
         double currToLow = currentWeight - MAX_OFFSET;
 
-        boolean validInput = weightInputValue > currToMax || weightInputValue < currToLow;
+        boolean notValidInput = weightInputValue > currToMax || weightInputValue < currToLow;
 
-        if (!validInput) {
-            double maxVal = weightInputValue >  currToMax ? currToMax : currToLow;
-            String limitMsg = "You entered a value that is unrealistic to be legit. " +
-                    "The maximum weight difference since your last tracked log should not be any more than " + maxVal;
-            Toast.makeText(this, limitMsg, Toast.LENGTH_LONG).show();
+        if (notValidInput) {
+            String maxVal = String.format("%.2f", weightInputValue >  currToMax ? currToMax : currToLow);
+            String limitMsg = "You entered a value that is unrealistic.\n\n" +
+                    "The maximum weight since your last tracked log should not be any more than " + maxVal + "kg";
+
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+
+            alertDialog.setTitle("Confirm weight log value");
+            alertDialog.setMessage(limitMsg);
+            alertDialog.setIcon(R.drawable.ic_close_black_24dp);
+            alertDialog.show();
         }
 
-        return validInput;
+        return notValidInput;
 
     }
 
     public void logWeight(View view) {
         if (!validateInput()) return;
 
-        
+
     }
 }

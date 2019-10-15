@@ -35,6 +35,8 @@ public class WeightLogs {
     }
 
     public long getDaysSinceLastLogged() {
+        if (lastLogged == null) return 1;
+
         return (int)((lastLogged.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
     }
 
