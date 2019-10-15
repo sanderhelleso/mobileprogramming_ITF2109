@@ -227,4 +227,12 @@ public class User {
     public static String getBirthdayFormated() {
         return D_FORMAT.format(birthday.getTime());
     }
+
+    public static int getCurrentWeight() {
+        return goal == null ? currentWeight : goal.currentWeight;
+    }
+
+    public static int getGoalWeight() {
+        return goal == null ? goalWeight : goal.goalWeight;
+    }
 }

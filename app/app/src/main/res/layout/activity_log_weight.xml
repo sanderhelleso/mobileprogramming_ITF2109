@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/logWeightInput"
         android:layout_width="307dp"
         android:layout_height="94dp"
         android:ems="10"
@@ -58,11 +58,11 @@
         android:text="KG"
         android:textColor="@color/lightGrey"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
+        app:layout_constraintBottom_toBottomOf="@+id/logWeightInput"
+        app:layout_constraintEnd_toEndOf="@+id/logWeightInput"
         app:layout_constraintHorizontal_bias="0.97"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toTopOf="@+id/editText"
+        app:layout_constraintStart_toStartOf="@+id/logWeightInput"
+        app:layout_constraintTop_toTopOf="@+id/logWeightInput"
         app:layout_constraintVertical_bias="0.541" />
 
     <Button
@@ -78,7 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/logWeightInput"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
