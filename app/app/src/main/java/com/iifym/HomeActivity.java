@@ -48,6 +48,10 @@ public class HomeActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.enter, R.anim.fade_out);
     }
 
+    public void gotoLogWeight(View view) {
+        startActivity(new Intent(this, LogWeightActivity.class));
+    }
+
     private void initPieChart() {
         PieChart pieChart = findViewById(R.id.pieChart);
         PieDataSet pieDataSet = new PieDataSet(setPieEntries(), "");
