@@ -13,18 +13,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.iifym.AuthActivity;
-import com.iifym.GoalStatsActivity;
 import com.iifym.HomeActivity;
-import com.iifym.ProfileSetupActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
-
-import javax.crypto.Mac;
 
 public class User {
     private static String gender;
@@ -68,8 +62,8 @@ public class User {
         CollectionReference goalsRef = db.collection("goals");
 
         // add the new created goal
-        Goal goal = new Goal(uid, currentWeight, currentWeight, goalWeight, activityLvl,
-                intensityLvl, calculateWeeksToReachGoal(), calculateMacros(), new WeightLogs());
+        Goal goal = new Goal(uid, currentWeight, currentWeight,
+                goalWeight, activityLvl, intensityLvl, calculateWeeksToReachGoal());
 
         goalsRef.add(goal);
         User.goal = goal;
@@ -206,14 +200,6 @@ public class User {
 
     public static Date getBirthday() {
         return birthday;
-    }
-
-    public static Macros getMacros() {
-        return goal.macros;
-    }
-
-    public static WeightLogs getWeightLogs() {
-        return goal.weightLogs;
     }
 
     public static void setWorkoutsPerWeek(int workoutsPerWeek) {

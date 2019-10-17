@@ -12,13 +12,11 @@ public class Goal {
     public double activityLvl;
     public int intensityLvl;
     public int estimatedWeeksToReach;
-    public Macros macros;
-    public WeightLogs weightLogs;
 
     public Goal() {}
 
-    public Goal(String uid, int currentWeight, int startWeight, int goalWeight, double activityLvl,
-                int intensityLvl, int estimatedWeeksToReach, Macros macros, WeightLogs weightLogs)
+    public Goal(String uid, int currentWeight, int startWeight, int goalWeight,
+                double activityLvl, int intensityLvl, int estimatedWeeksToReach)
     {
         this.uid = uid;
         this.currentWeight = currentWeight;
@@ -27,7 +25,5 @@ public class Goal {
         this.activityLvl = activityLvl;
         this.intensityLvl = intensityLvl;
         this.estimatedWeeksToReach = estimatedWeeksToReach;
-        this.macros = macros;
-        this.weightLogs = weightLogs;
     }
 }

@@ -42,6 +42,7 @@ public class IntentSelector {
                             // if no profile, goto Profile Setup
                             if (isEmpty) {
                                 intent.setClass(activity, ProfileSetupActivity.class);
+                                replaceActivity(intent, activity);
                             } else {
                                 QueryDocumentSnapshot document = (QueryDocumentSnapshot) profileTask.getResult().getDocuments().get(0);
                                 Profile profile = document.toObject(Profile.class);

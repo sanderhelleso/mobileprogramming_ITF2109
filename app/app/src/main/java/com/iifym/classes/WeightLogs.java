@@ -65,6 +65,7 @@ public class WeightLogs {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
 
+                            // create document if not present for user
                             if (task.getResult().isEmpty()) {
                                 WeightLogs weightLogs = new WeightLogs();
                                 weightLogs.setLastLogged(log.getLoggedAt());

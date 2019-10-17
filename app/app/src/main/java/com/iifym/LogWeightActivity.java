@@ -54,7 +54,7 @@ public class LogWeightActivity extends AppCompatActivity {
         }
 
         final double SAFE_WEEKLY_LOSS = 0.90718474;
-        double MAX_OFFSET = Math.ceil(User.getWeightLogs().getDaysSinceLastLogged() / 7.0) * (SAFE_WEEKLY_LOSS * 3);
+        double MAX_OFFSET = 100;//Math.ceil(User.getWeightLogs().getDaysSinceLastLogged() / 7.0) * (SAFE_WEEKLY_LOSS * 3);
 
         double weightInputValue = Double.parseDouble(inputVal);
         double currToMax = currentWeight + MAX_OFFSET;
