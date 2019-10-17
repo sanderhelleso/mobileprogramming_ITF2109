@@ -41,7 +41,7 @@ public class LogWeightActivity extends AppCompatActivity {
         final double INC = 0.15;
         double hint = currentWeight > goalWeight ? currentWeight - INC : currentWeight + INC;
 
-        weightInput.setHint(String.valueOf(hint));
+        weightInput.setHint(String.format("%.2f", hint));
         weightInput.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(3, 2)});
     }
 
