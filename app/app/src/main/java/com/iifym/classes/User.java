@@ -36,8 +36,6 @@ public class User {
     private static int minutesPerWorkout;
     private static boolean hasGoal;
     private static Goal goal;
-    private static Macros macros;
-    private static WeightLogs weightLogs;
 
     private static final SimpleDateFormat D_FORMAT = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
 
@@ -81,7 +79,7 @@ public class User {
         IntentSelector.replaceActivity(new Intent(activity, HomeActivity.class), activity);
     }
 
-    private static void updateGoal() {
+    public static void updateGoal() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         final CollectionReference goalsRef = db.collection("goals");
         Query query = goalsRef.whereEqualTo("uid", getUID());
@@ -131,11 +129,11 @@ public class User {
     }
 
     // calculate users new avg weight from previously era and use for new macro calculations
-    public static void recalculate(WeightLogs weightLogs) {
+    public static double recalculate(WeightLogs weightLogs) {
         List<Log> logs = weightLogs.getLogs();
 
         currentWeight = WeightLogs.calculateAvgWeightFromLastEra(logs);
-        updateGoal();
+        return currentWeight;
     }
 
     // Harris-Benedict Equation, which takes into account age, height, and weight

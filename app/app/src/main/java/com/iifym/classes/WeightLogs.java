@@ -21,6 +21,8 @@ import java.util.Map;
 
 @IgnoreExtraProperties
 public class WeightLogs {
+    private final static int ERA_LENGTH = 7;
+
     private Date lastLogged;
     private List<Log> logs = new ArrayList<>();
     private List<Double> averageWeights = new ArrayList<>();
@@ -53,15 +55,14 @@ public class WeightLogs {
     }
 
     public static Double calculateAvgWeightFromLastEra(List<Log> logs) {
-        final int ERA_LEN = 7;
         double avg = 0;
         int logSize = logs.size();
 
-        for (int i = logSize - ERA_LEN; i < logSize; i++) {
+        for (int i = logSize - ERA_LENGTH; i < logSize; i++) {
             avg += logs.get(i).getWeight();
         }
 
-        return avg / ERA_LEN;
+        return avg / ERA_LENGTH;
     }
 
     public static void addLog(final Log log) {
@@ -96,11 +97,18 @@ public class WeightLogs {
                             propMap.put("lastLogged", log.getLoggedAt());
                             propMap.put("logs", logs);
 
-                            weightLogsRef.document(document.getId()).set(propMap, SetOptions.merge());
+                            // recalculate if current era is over
+                            if (logs.size() % ERA_LENGTH == 0) {
+                                double avgWeight = User.recalculate(weightLogs);
+                                List<Double> avgWeights = weightLogs.getAverageWeights();
 
-                            if (logs.size() % 7 == 0) {
-                                User.recalculate(weightLogs);
+                                avgWeights.add(avgWeight);
+                                propMap.put("averageWeights", avgWeights);
+
+                                User.updateGoal();
                             }
+
+                            weightLogsRef.document(document.getId()).set(propMap, SetOptions.merge());
                         }
                     }
                 });
