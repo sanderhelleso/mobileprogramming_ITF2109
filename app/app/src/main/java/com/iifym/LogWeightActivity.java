@@ -12,7 +12,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.iifym.classes.DecimalDigitsInputFilter;
+import com.iifym.classes.Log;
 import com.iifym.classes.User;
+import com.iifym.classes.WeightLogs;
+
+import java.util.Date;
 
 public class LogWeightActivity extends AppCompatActivity {
     private double currentWeight = User.getCurrentWeight();
@@ -88,17 +92,18 @@ public class LogWeightActivity extends AppCompatActivity {
             alertDialog.show();
         }
 
-        return notValidInput;
-
+        return !notValidInput;
     }
 
     public void logWeight(View view) {
-        if (validateInput())  {
-               addLog();
-        }
+        if (validateInput()) addLog();
     }
 
     private void addLog() {
+        double weight = Double.valueOf(weightInput.getText().toString());
+        Log log = new Log(new Date(), weight);
+        WeightLogs.addLog(log);
 
+        finish();
     }
 }
