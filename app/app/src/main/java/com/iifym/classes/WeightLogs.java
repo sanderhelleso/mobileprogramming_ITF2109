@@ -12,8 +12,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
-import java.sql.Time;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,10 +21,10 @@ import java.util.Map;
 
 @IgnoreExtraProperties
 public class WeightLogs {
-    public Date lastLogged;
-    public List<Log> logs = new ArrayList<>();
-    public List<Double> averageWeights = new ArrayList<>();
-    public String uid;
+    private Date lastLogged;
+    private List<Log> logs = new ArrayList<>();
+    private List<Double> averageWeights = new ArrayList<>();
+    private String uid;
 
     public WeightLogs() {}
 
@@ -48,10 +46,22 @@ public class WeightLogs {
         return !(sameDay && sameYear);
     }
 
-    public long getDaysSinceLastLogged() {
+    public long daysSinceLastLogged() {
         if (lastLogged == null) return 1;
 
         return (int)((lastLogged.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
+    }
+
+    public static Double calculateAvgWeightFromLastEra(List<Log> logs) {
+        final int ERA_LEN = 7;
+        double avg = 0;
+        int logSize = logs.size();
+
+        for (int i = logSize - ERA_LEN; i < logSize; i++) {
+            avg += logs.get(i).getWeight();
+        }
+
+        return avg / ERA_LEN;
     }
 
     public static void addLog(final Log log) {
@@ -87,6 +97,10 @@ public class WeightLogs {
                             propMap.put("logs", logs);
 
                             weightLogsRef.document(document.getId()).set(propMap, SetOptions.merge());
+
+                            if (logs.size() % 7 == 0) {
+                                User.recalculate(weightLogs);
+                            }
                         }
                     }
                 });
@@ -110,5 +124,9 @@ public class WeightLogs {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getUid() {
+        return uid;
     }
 }

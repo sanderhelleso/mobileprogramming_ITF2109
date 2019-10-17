@@ -72,13 +72,13 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayList<PieEntry> setPieEntries() {
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
 
-        /*Macros macros = User.getMacros();
+        Macros macros = User.getMacros();
         TextView caloriesTxt = findViewById(R.id.calories);
         caloriesTxt.setText(Integer.toString(macros.getCalories()));
 
         pieEntries.add(new PieEntry(macros.getCarbohydrate(), 0));
         pieEntries.add(new PieEntry(macros.getProtein(), 1));
-        pieEntries.add(new PieEntry(macros.getFat(), 2));*/
+        pieEntries.add(new PieEntry(macros.getFat(), 2));
 
         return pieEntries;
     }

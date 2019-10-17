@@ -49,7 +49,7 @@ public class IntentSelector {
                                 User.setLoadedFields(profile);
 
                                 // user has profile, but no goal setup, goto Goal setup
-                                if (!profile.hasGoal) {
+                                if (!profile.isHasGoal()) {
                                     intent.setClass(activity, GoalStatsActivity.class);
                                     mustFetchGoal = false;
                                 } else {
