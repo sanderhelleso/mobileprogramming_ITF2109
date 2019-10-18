@@ -42,13 +42,14 @@ public class IntentSelector {
                             // if no profile, goto Profile Setup
                             if (isEmpty) {
                                 intent.setClass(activity, ProfileSetupActivity.class);
+                                replaceActivity(intent, activity);
                             } else {
                                 QueryDocumentSnapshot document = (QueryDocumentSnapshot) profileTask.getResult().getDocuments().get(0);
                                 Profile profile = document.toObject(Profile.class);
                                 User.setLoadedFields(profile);
 
                                 // user has profile, but no goal setup, goto Goal setup
-                                if (!profile.hasGoal) {
+                                if (!profile.isHasGoal()) {
                                     intent.setClass(activity, GoalStatsActivity.class);
                                     mustFetchGoal = false;
                                 } else {

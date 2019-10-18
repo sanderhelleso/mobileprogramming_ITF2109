@@ -48,6 +48,10 @@ public class HomeActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.enter, R.anim.fade_out);
     }
 
+    public void gotoLogWeight(View view) {
+        startActivity(new Intent(this, LogWeightActivity.class));
+    }
+
     private void initPieChart() {
         PieChart pieChart = findViewById(R.id.pieChart);
         PieDataSet pieDataSet = new PieDataSet(setPieEntries(), "");
@@ -139,12 +143,12 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<Entry> setLineEntries() {
         ArrayList<Entry> lineEntries = new ArrayList<>();
-        WeightLogs weightLogs = User.getWeightLogs();
+        /*WeightLogs weightLogs = User.getWeightLogs();
 
         int i = 1;
         for (double weight : weightLogs.getAverageWeights()) {
             lineEntries.add(new Entry(i++, (int)weight));
-        }
+        }*/
 
         return lineEntries;
     }

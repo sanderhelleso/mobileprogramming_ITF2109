@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.iifym.classes.IntentSelector;
+import com.iifym.classes.Macros;
 import com.iifym.classes.SeekBarWithMin;
 import com.iifym.classes.User;
 

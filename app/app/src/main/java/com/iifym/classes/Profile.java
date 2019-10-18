@@ -7,11 +7,11 @@ import java.util.Date;
 @IgnoreExtraProperties
 public class Profile {
 
-    public String uid;
-    public String gender;
-    public Date birthday;
-    public int height;
-    public boolean hasGoal;
+    private String uid;
+    private String gender;
+    private Date birthday;
+    private int height;
+    private boolean hasGoal;
 
     public Profile() {}
 
@@ -21,5 +21,29 @@ public class Profile {
         this.birthday = birthday;
         this.height = height;
         this.hasGoal = hasGoal;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public boolean isHasGoal() {
+        return hasGoal;
+    }
+
+    public void setHasGoal() {
+        this.hasGoal = true;
     }
 }

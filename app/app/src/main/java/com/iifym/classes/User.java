@@ -13,25 +13,23 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.iifym.AuthActivity;
-import com.iifym.GoalStatsActivity;
+import com.google.firebase.firestore.SetOptions;
 import com.iifym.HomeActivity;
-import com.iifym.ProfileSetupActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
-import javax.crypto.Mac;
+import java.util.Map;
 
 public class User {
     private static String gender;
     private static Date birthday;
     private static int height;
-    private static int currentWeight;
-    private static int goalWeight;
+    private static double currentWeight;
+    private static double goalWeight;
     private static double activityLvl;
     private static int intensityLvl;
     private static int workoutsPerWeek;
@@ -69,7 +67,7 @@ public class User {
 
         // add the new created goal
         Goal goal = new Goal(uid, currentWeight, currentWeight, goalWeight, activityLvl,
-                intensityLvl, calculateWeeksToReachGoal(), calculateMacros(), new WeightLogs());
+                intensityLvl, calculateWeeksToReachGoal(), calculateMacros());
 
         goalsRef.add(goal);
         User.goal = goal;
@@ -79,6 +77,29 @@ public class User {
         }
 
         IntentSelector.replaceActivity(new Intent(activity, HomeActivity.class), activity);
+    }
+
+    public static void updateGoal() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final CollectionReference goalsRef = db.collection("goals");
+        Query query = goalsRef.whereEqualTo("uid", getUID());
+
+        query.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            QueryDocumentSnapshot document = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);
+
+                            Map<Object, Object> propMap = new HashMap<>();
+                            propMap.put("macros", calculateMacros());
+                            propMap.put("estimatedWeeksToReach", calculateWeeksToReachGoal());
+                            propMap.put("currentWeight", getCurrentWeight());
+
+                            goalsRef.document(document.getId()).set(propMap, SetOptions.merge());
+                        }
+                    }
+                });
     }
 
     private static void setProfileHasGoal(FirebaseFirestore db, String uid) {
@@ -93,7 +114,7 @@ public class User {
                             QueryDocumentSnapshot document = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);
 
                             Profile profile = document.toObject(Profile.class);
-                            profile.hasGoal = true;
+                            profile.setHasGoal();
 
                             profilesRef.document(document.getId()).set(profile);
                         }
@@ -105,6 +126,14 @@ public class User {
     public static String getUID() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         return auth.getCurrentUser().getUid();
+    }
+
+    // calculate users new avg weight from previously era and use for new macro calculations
+    public static double recalculate(WeightLogs weightLogs) {
+        List<Log> logs = weightLogs.getLogs();
+
+        currentWeight = WeightLogs.calculateAvgWeightFromLastEra(logs);
+        return currentWeight;
     }
 
     // Harris-Benedict Equation, which takes into account age, height, and weight
@@ -152,7 +181,7 @@ public class User {
 
     public static int calculateWeeksToReachGoal() {
         double safeLossPerWeek = 0.45359237; // 1 pound / 0.45kg per week
-        double currWeight = (double) currentWeight;
+        double currWeight = currentWeight;
 
         int weeks = 0;
         while(currWeight >= goalWeight) {
@@ -164,14 +193,17 @@ public class User {
     }
 
     public static void setLoadedFields(Profile profile) {
-        gender = profile.gender;
-        birthday = profile.birthday;
-        height = profile.height;
-        hasGoal = profile.hasGoal;
+        gender = profile.getGender();
+        birthday = profile.getBirthday();
+        height = profile.getHeight();
+        hasGoal = profile.isHasGoal();
     }
 
     public static void setLoadedGoal(Goal goal) {
         User.goal = goal;
+
+        currentWeight = goal.getCurrentWeight();
+        goalWeight = goal.getGoalWeight();
     }
 
     public static int getHeight() {
@@ -208,14 +240,6 @@ public class User {
         return birthday;
     }
 
-    public static Macros getMacros() {
-        return goal.macros;
-    }
-
-    public static WeightLogs getWeightLogs() {
-        return goal.weightLogs;
-    }
-
     public static void setWorkoutsPerWeek(int workoutsPerWeek) {
         User.workoutsPerWeek = workoutsPerWeek;
     }
@@ -226,5 +250,17 @@ public class User {
 
     public static String getBirthdayFormated() {
         return D_FORMAT.format(birthday.getTime());
+    }
+
+    public static double getCurrentWeight() {
+        return currentWeight;
+    }
+
+    public static double getGoalWeight() {
+        return goalWeight;
+    }
+
+    public static Macros getMacros() {
+        return goal.getMacros();
     }
 }
