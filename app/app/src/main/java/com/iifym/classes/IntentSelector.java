@@ -31,6 +31,9 @@ public class IntentSelector {
         CollectionReference goalsRef = db.collection("goals");
         final Query goalsQuery = goalsRef.whereEqualTo("uid", uid).limit(1);
 
+        CollectionReference weightLogsRef = db.collection("weightLogs");
+        final Query weightLogsQuery = weightLogsRef.whereEqualTo("uid", uid).limit(1);
+
         profilesQuery.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -62,9 +65,21 @@ public class IntentSelector {
                                                         Goal goal = document.toObject(Goal.class);
                                                         User.setLoadedGoal(goal);
 
-                                                        // user has goal, goto Home
-                                                        intent.setClass(activity, HomeActivity.class);
-                                                        replaceActivity(intent, activity);
+                                                        weightLogsQuery.get()
+                                                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>(){
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<QuerySnapshot> weightLogsTask) {
+                                                                        if (weightLogsTask.isSuccessful()) {
+                                                                            QueryDocumentSnapshot document = (QueryDocumentSnapshot) weightLogsTask.getResult().getDocuments().get(0);
+                                                                            WeightLogs weightLogs = document.toObject(WeightLogs.class);
+                                                                            User.setLoadedWeightLogs(weightLogs);
+
+                                                                            // user has goal, goto Home
+                                                                            intent.setClass(activity, HomeActivity.class);
+                                                                            replaceActivity(intent, activity);
+                                                                        }
+                                                                    }
+                                                                });
                                                     }
                                                 }
                                             });

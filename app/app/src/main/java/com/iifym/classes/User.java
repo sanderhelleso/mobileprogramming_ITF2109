@@ -36,6 +36,7 @@ public class User {
     private static int minutesPerWorkout;
     private static boolean hasGoal;
     private static Goal goal;
+    private static WeightLogs weightLogs;
 
     private static final SimpleDateFormat D_FORMAT = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
 
@@ -262,5 +263,13 @@ public class User {
 
     public static Macros getMacros() {
         return goal.getMacros();
+    }
+
+    public static void setLoadedWeightLogs(WeightLogs weightLogs) {
+        User.weightLogs = weightLogs;
+    }
+
+    public static WeightLogs getWeightLogs() {
+        return weightLogs;
     }
 }

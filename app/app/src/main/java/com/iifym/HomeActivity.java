@@ -31,6 +31,7 @@ import com.iifym.classes.WeightLogs;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -143,12 +144,13 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<Entry> setLineEntries() {
         ArrayList<Entry> lineEntries = new ArrayList<>();
-        /*WeightLogs weightLogs = User.getWeightLogs();
+        WeightLogs weightLogs = User.getWeightLogs();
+        List<Double> avgWeights = weightLogs.getAverageWeights();
 
         int i = 1;
-        for (double weight : weightLogs.getAverageWeights()) {
+        for (double weight : avgWeights) {
             lineEntries.add(new Entry(i++, (int)weight));
-        }*/
+        }
 
         return lineEntries;
     }
