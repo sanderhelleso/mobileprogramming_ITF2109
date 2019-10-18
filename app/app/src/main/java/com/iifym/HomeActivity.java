@@ -135,6 +135,8 @@ public class HomeActivity extends AppCompatActivity {
 
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        lineChart.getXAxis().setDrawLabels(false);
+        lineChart.getXAxis().setDrawAxisLine(false);
 
         Legend legend = lineChart.getLegend();
         legend.setEnabled(false);
@@ -144,12 +146,13 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<Entry> setLineEntries() {
         ArrayList<Entry> lineEntries = new ArrayList<>();
-        WeightLogs weightLogs = User.getWeightLogs();
-        List<Double> avgWeights = weightLogs.getAverageWeights();
+        List<Log> avgWeights = User.getWeightLogs().getLogs();
+
+        System.out.println(avgWeights.size());
 
         int i = 1;
-        for (double weight : avgWeights) {
-            lineEntries.add(new Entry(i++, (int)weight));
+        for (Log log : avgWeights) {
+            lineEntries.add(new Entry(i++, (float) log.getWeight()));
         }
 
         return lineEntries;
