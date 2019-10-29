@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -102,6 +103,10 @@ public class LogWeightActivity extends AppCompatActivity {
     }
 
     private void addLog() {
+        Button saveButton = findViewById(R.id.save_button);
+        saveButton.setEnabled(false);
+        saveButton.setText("Saving...");
+
         double weight = Double.valueOf(weightInput.getText().toString());
         Log log = new Log(new Date(), weight);
         setResult(RESULT_OK);
