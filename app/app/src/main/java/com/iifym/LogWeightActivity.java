@@ -3,7 +3,9 @@ package com.iifym;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -102,8 +104,7 @@ public class LogWeightActivity extends AppCompatActivity {
     private void addLog() {
         double weight = Double.valueOf(weightInput.getText().toString());
         Log log = new Log(new Date(), weight);
-        WeightLogs.addLog(log);
-
-        finish();
+        setResult(RESULT_OK);
+        WeightLogs.addLog(log, this);
     }
 }

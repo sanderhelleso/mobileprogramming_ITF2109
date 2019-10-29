@@ -3,6 +3,7 @@ package com.iifym;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -32,6 +33,7 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
     Button dailyToggleBtn;
     Button weeklyToggleBtn;
+    Boolean dailyChartActive = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +47,22 @@ public class HomeActivity extends AppCompatActivity {
         initLineChart(setLineEntriesDaily());
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            initLineChart(dailyChartActive ? setLineEntriesDaily() : setLineEntriesWeekly());
+        }
+    }
+
     public void gotoSettings(View view) {
         startActivity(new Intent(this, SettingsActivity.class));
         overridePendingTransition(R.anim.enter, R.anim.fade_out);
     }
 
     public void gotoLogWeight(View view) {
-        startActivity(new Intent(this, LogWeightActivity.class));
+        startActivityForResult(new Intent(this, LogWeightActivity.class), 1);
     }
 
     private void initPieChart() {
@@ -178,11 +189,13 @@ public class HomeActivity extends AppCompatActivity {
         dailyToggleBtn.setEnabled(false);
         weeklyToggleBtn.setEnabled(true);
         initLineChart(setLineEntriesDaily());
+        dailyChartActive = true;
     }
 
     public void toggleLineChartWeekly(View view) {
         dailyToggleBtn.setEnabled(true);
         weeklyToggleBtn.setEnabled(false);
         initLineChart(setLineEntriesWeekly());
+        dailyChartActive = false;
     }
  }

@@ -272,4 +272,8 @@ public class User {
     public static WeightLogs getWeightLogs() {
         return weightLogs;
     }
+
+    public static void setWeightLogs(WeightLogs weightLogs) {
+        User.weightLogs = weightLogs;
+    }
 }

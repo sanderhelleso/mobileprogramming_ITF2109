@@ -1,5 +1,7 @@
 package com.iifym.classes;
 
+import android.app.Activity;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -65,7 +67,7 @@ public class WeightLogs {
         return avg / ERA_LENGTH;
     }
 
-    public static void addLog(final Log log) {
+    public static void addLog(final Log log, final Activity activity) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         final CollectionReference weightLogsRef = db.collection("weightLogs");
         Query query = weightLogsRef.whereEqualTo("uid", User.getUID());
@@ -106,9 +108,12 @@ public class WeightLogs {
                                 propMap.put("averageWeights", avgWeights);
 
                                 User.updateGoal();
+                                User.getWeightLogs().addWeeklyWeightToList(avgWeight);
                             }
 
+                            User.getWeightLogs().addLogToList(log);
                             weightLogsRef.document(document.getId()).set(propMap, SetOptions.merge());
+                            activity.finish();
                         }
                     }
                 });
@@ -136,5 +141,13 @@ public class WeightLogs {
 
     public String getUid() {
         return uid;
+    }
+
+    public void addLogToList(Log log) {
+        this.logs.add(log);
+    }
+
+    public void addWeeklyWeightToList(Double weight) {
+        this.averageWeights.add(weight);
     }
 }
