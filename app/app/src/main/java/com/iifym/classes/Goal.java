@@ -5,18 +5,20 @@ import com.google.firebase.firestore.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Goal {
 
-    public String uid;
-    public int currentWeight;
-    public int startWeight;
-    public int goalWeight;
-    public double activityLvl;
-    public int intensityLvl;
-    public int estimatedWeeksToReach;
-    public Macros macros;
+    private String uid;
+    private double currentWeight;
+    private double startWeight;
+    private double goalWeight;
+    private double activityLvl;
+    private int intensityLvl;
+    private int estimatedWeeksToReach;
+    private Macros macros;
 
     public Goal() {}
 
-    public Goal(String uid, int currentWeight, int startWeight, int goalWeight, double activityLvl, int intensityLvl, int estimatedWeeksToReach, Macros macros) {
+    public Goal(String uid, double currentWeight, double startWeight, double goalWeight,
+                double activityLvl, int intensityLvl, int estimatedWeeksToReach, Macros macros)
+    {
         this.uid = uid;
         this.currentWeight = currentWeight;
         this.startWeight = startWeight;
@@ -25,5 +27,37 @@ public class Goal {
         this.intensityLvl = intensityLvl;
         this.estimatedWeeksToReach = estimatedWeeksToReach;
         this.macros = macros;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public double getCurrentWeight() {
+        return currentWeight;
+    }
+
+    public double getStartWeight() {
+        return startWeight;
+    }
+
+    public double getGoalWeight() {
+        return goalWeight;
+    }
+
+    public double getActivityLvl() {
+        return activityLvl;
+    }
+
+    public int getIntensityLvl() {
+        return intensityLvl;
+    }
+
+    public int getEstimatedWeeksToReach() {
+        return estimatedWeeksToReach;
+    }
+
+    public Macros getMacros() {
+        return macros;
     }
 }

@@ -9,12 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".LogWeightActivity"></activity>
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".GoalWorkoutFreqActivity" />
         <activity android:name=".GoalActivityLvlActivity" />
         <activity android:name=".GoalStatsActivity" />
         <activity android:name=".ProfileSetupActivity" />
-        <activity android:name=".HomeActivity"/>
+        <activity android:name=".HomeActivity" />
         <activity
             android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

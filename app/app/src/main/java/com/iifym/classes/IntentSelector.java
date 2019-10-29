@@ -31,6 +31,9 @@ public class IntentSelector {
         CollectionReference goalsRef = db.collection("goals");
         final Query goalsQuery = goalsRef.whereEqualTo("uid", uid).limit(1);
 
+        CollectionReference weightLogsRef = db.collection("weightLogs");
+        final Query weightLogsQuery = weightLogsRef.whereEqualTo("uid", uid).limit(1);
+
         profilesQuery.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -42,14 +45,16 @@ public class IntentSelector {
                             // if no profile, goto Profile Setup
                             if (isEmpty) {
                                 intent.setClass(activity, ProfileSetupActivity.class);
+                                replaceActivity(intent, activity);
                             } else {
                                 QueryDocumentSnapshot document = (QueryDocumentSnapshot) profileTask.getResult().getDocuments().get(0);
                                 Profile profile = document.toObject(Profile.class);
                                 User.setLoadedFields(profile);
 
                                 // user has profile, but no goal setup, goto Goal setup
-                                if (!profile.hasGoal) {
+                                if (!profile.isHasGoal()) {
                                     intent.setClass(activity, GoalStatsActivity.class);
+                                    User.setLoadedWeightLogs(new WeightLogs());
                                     mustFetchGoal = false;
                                 } else {
                                     goalsQuery.get()
@@ -57,13 +62,28 @@ public class IntentSelector {
                                                 @Override
                                                 public void onComplete(@NonNull Task<QuerySnapshot> goalsTask) {
                                                     if (goalsTask.isSuccessful()) {
-                                                        QueryDocumentSnapshot document = (QueryDocumentSnapshot) goalsTask.getResult().getDocuments().get(0);
+                                                        final QueryDocumentSnapshot document = (QueryDocumentSnapshot) goalsTask.getResult().getDocuments().get(0);
                                                         Goal goal = document.toObject(Goal.class);
                                                         User.setLoadedGoal(goal);
 
-                                                        // user has goal, goto Home
-                                                        intent.setClass(activity, HomeActivity.class);
-                                                        replaceActivity(intent, activity);
+                                                        weightLogsQuery.get()
+                                                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>(){
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<QuerySnapshot> weightLogsTask) {
+                                                                        if (weightLogsTask.isSuccessful()) {
+
+                                                                            if (!weightLogsTask.getResult().isEmpty()) {
+                                                                                QueryDocumentSnapshot document = (QueryDocumentSnapshot) weightLogsTask.getResult().getDocuments().get(0);
+                                                                                WeightLogs weightLogs = document.toObject(WeightLogs.class);
+                                                                                User.setLoadedWeightLogs(weightLogs);
+                                                                            }
+
+                                                                            // user has goal, goto Home
+                                                                            intent.setClass(activity, HomeActivity.class);
+                                                                            replaceActivity(intent, activity);
+                                                                        }
+                                                                    }
+                                                                });
                                                     }
                                                 }
                                             });

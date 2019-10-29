@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LogWeightActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="156dp"
+        android:text="Log Weight"
+        android:textColor="#000000"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/logWeightInput"
+        android:layout_width="307dp"
+        android:layout_height="94dp"
+        android:ems="10"
+        android:hint="75.2"
+        android:inputType="numberDecimal"
+        android:paddingEnd="55dp"
+        android:padding="0dp"
+        android:textSize="60sp"
+        android:theme="@style/BaseEditText"
+        android:textColorHint="@color/lightGrey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintVertical_bias="0.286" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="312dp"
+        android:layout_height="56dp"
+        android:gravity="center"
+        android:text="Enter and log the todays weight. We will recalculate your new macros over time!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KG"
+        android:textColor="@color/lightGrey"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/logWeightInput"
+        app:layout_constraintEnd_toEndOf="@+id/logWeightInput"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="@+id/logWeightInput"
+        app:layout_constraintTop_toTopOf="@+id/logWeightInput"
+        app:layout_constraintVertical_bias="0.541" />
+
+    <Button
+        android:id="@+id/save_button"
+        style="@style/main_button"
+        android:layout_height="71dp"
+        android:drawableRight="@drawable/ic_check_white_24dp"
+        android:elevation="4dp"
+        android:onClick="logWeight"
+        android:paddingLeft="50dp"
+        android:paddingRight="25dp"
+        android:text="SAVE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logWeightInput"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/back_button"
+        style="@style/back_button"
+        android:layout_width="101dp"
+        android:onClick="back"
+        android:layout_height="53dp"
+        android:drawableLeft="@drawable/ic_keyboard_backspace_black_50dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.504" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
