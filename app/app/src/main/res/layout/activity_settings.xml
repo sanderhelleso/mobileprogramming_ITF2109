@@ -14,7 +14,7 @@
         android:layout_marginBottom="36dp"
         android:drawableRight="@drawable/ic_priority_high_black_24dp"
         android:elevation="4dp"
-        android:onClick="logout"
+        android:onClick="deleteAccount"
         android:paddingLeft="50dp"
         android:paddingRight="25dp"
         android:text="DELETE ACCOUNT"
