@@ -62,7 +62,7 @@ public class IntentSelector {
                                                 @Override
                                                 public void onComplete(@NonNull Task<QuerySnapshot> goalsTask) {
                                                     if (goalsTask.isSuccessful()) {
-                                                        QueryDocumentSnapshot document = (QueryDocumentSnapshot) goalsTask.getResult().getDocuments().get(0);
+                                                        final QueryDocumentSnapshot document = (QueryDocumentSnapshot) goalsTask.getResult().getDocuments().get(0);
                                                         Goal goal = document.toObject(Goal.class);
                                                         User.setLoadedGoal(goal);
 
@@ -71,9 +71,12 @@ public class IntentSelector {
                                                                     @Override
                                                                     public void onComplete(@NonNull Task<QuerySnapshot> weightLogsTask) {
                                                                         if (weightLogsTask.isSuccessful()) {
-                                                                            QueryDocumentSnapshot document = (QueryDocumentSnapshot) weightLogsTask.getResult().getDocuments().get(0);
-                                                                            WeightLogs weightLogs = document.toObject(WeightLogs.class);
-                                                                            User.setLoadedWeightLogs(weightLogs);
+
+                                                                            if (!weightLogsTask.getResult().isEmpty()) {
+                                                                                QueryDocumentSnapshot document = (QueryDocumentSnapshot) weightLogsTask.getResult().getDocuments().get(0);
+                                                                                WeightLogs weightLogs = document.toObject(WeightLogs.class);
+                                                                                User.setLoadedWeightLogs(weightLogs);
+                                                                            }
 
                                                                             // user has goal, goto Home
                                                                             intent.setClass(activity, HomeActivity.class);
