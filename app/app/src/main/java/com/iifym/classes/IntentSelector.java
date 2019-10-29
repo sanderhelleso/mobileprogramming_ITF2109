@@ -54,6 +54,7 @@ public class IntentSelector {
                                 // user has profile, but no goal setup, goto Goal setup
                                 if (!profile.isHasGoal()) {
                                     intent.setClass(activity, GoalStatsActivity.class);
+                                    User.setLoadedWeightLogs(new WeightLogs());
                                     mustFetchGoal = false;
                                 } else {
                                     goalsQuery.get()

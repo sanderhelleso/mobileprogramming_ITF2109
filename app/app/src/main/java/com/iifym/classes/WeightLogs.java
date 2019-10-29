@@ -86,6 +86,10 @@ public class WeightLogs {
                                 weightLogs.setUid(User.getUID());
 
                                 weightLogsRef.add(weightLogs);
+                                User.getWeightLogs().addLogToList(log);
+
+                                activity.setResult(Activity.RESULT_OK);
+                                activity.finish();
                                 return;
                             }
 
@@ -113,6 +117,8 @@ public class WeightLogs {
 
                             User.getWeightLogs().addLogToList(log);
                             weightLogsRef.document(document.getId()).set(propMap, SetOptions.merge());
+
+                            activity.setResult(Activity.RESULT_OK);
                             activity.finish();
                         }
                     }

@@ -70,7 +70,6 @@ public class LogWeightActivity extends AppCompatActivity {
 
         double weight = Double.valueOf(weightInput.getText().toString());
         Log log = new Log(new Date(), weight);
-        setResult(RESULT_OK);
         WeightLogs.addLog(log, this);
     }
 }

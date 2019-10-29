@@ -112,15 +112,14 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initLineChart(ArrayList<Entry> entries) {
         LineChart lineChart = findViewById(R.id.lineChart);
+        TextView placeholder = findViewById(R.id.linechart_placeholder);
 
-        if (entries.size() == 0) {
+        if (entries.size() < 2) {
             lineChart.setVisibility(View.GONE);
-
-            TextView placeholder = findViewById(R.id.linechart_placeholder);
             placeholder.setVisibility(View.VISIBLE);
-
             return;
         }
+
 
         lineChart.getXAxis().setDrawGridLines(false);
         lineChart.getAxisLeft().setDrawGridLines(false);
@@ -144,6 +143,9 @@ public class HomeActivity extends AppCompatActivity {
 
         lineChart.setData(new LineData(makeDataSet(entries)));
         lineChart.invalidate();
+
+        lineChart.setVisibility(View.VISIBLE);
+        placeholder.setVisibility(View.GONE);
     }
 
     private LineDataSet makeDataSet(ArrayList<Entry> entries) {
