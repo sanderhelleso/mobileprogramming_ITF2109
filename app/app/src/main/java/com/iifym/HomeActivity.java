@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -21,27 +22,27 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.iifym.classes.Log;
 import com.iifym.classes.Macros;
 import com.iifym.classes.User;
-import com.iifym.classes.WeightLogs;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
+    Button dailyToggleBtn;
+    Button weeklyToggleBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        dailyToggleBtn = findViewById(R.id.chart_button_daily);
+        weeklyToggleBtn = findViewById(R.id.chart_button_weekly);
+
         initPieChart();
-        initLineChart();
+        initLineChart(setLineEntriesDaily());
     }
 
     public void gotoSettings(View view) {
@@ -68,6 +69,7 @@ public class HomeActivity extends AppCompatActivity {
         pieDataSet.setSliceSpace(5f);
 
         pieChart.setData(new PieData(pieDataSet));
+        pieChart.invalidate();
     }
 
     private ArrayList<PieEntry> setPieEntries() {
@@ -97,9 +99,8 @@ public class HomeActivity extends AppCompatActivity {
         return colors;
     }
 
-    private void initLineChart() {
+    private void initLineChart(ArrayList<Entry> entries) {
         LineChart lineChart = findViewById(R.id.lineChart);
-        ArrayList<Entry> entries = setLineEntries();
 
         if (entries.size() == 0) {
             lineChart.setVisibility(View.GONE);
@@ -110,23 +111,12 @@ public class HomeActivity extends AppCompatActivity {
             return;
         }
 
-        LineDataSet lineDataSet = new LineDataSet(entries, "");
-
         lineChart.getXAxis().setDrawGridLines(false);
         lineChart.getAxisLeft().setDrawGridLines(false);
         lineChart.getAxisRight().setDrawGridLines(false);
         lineChart.setDrawGridBackground(false);
         lineChart.setDrawBorders(false);
         lineChart.getDescription().setEnabled(false);
-
-        lineDataSet.setDrawValues(false);
-        lineDataSet.setLineWidth(1.5f);
-        lineDataSet.setDrawCircles(false);
-        lineDataSet.setColor(Color.rgb(159,168,218));
-
-        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.line_chart);
-        lineDataSet.setFillDrawable(drawable);
-        lineDataSet.setDrawFilled(true);
 
         YAxis leftAxis = lineChart.getAxisLeft();
         leftAxis.setEnabled(false);
@@ -141,20 +131,58 @@ public class HomeActivity extends AppCompatActivity {
         Legend legend = lineChart.getLegend();
         legend.setEnabled(false);
 
-        lineChart.setData(new LineData(lineDataSet));
+        lineChart.setData(new LineData(makeDataSet(entries)));
+        lineChart.invalidate();
     }
 
-    private ArrayList<Entry> setLineEntries() {
-        ArrayList<Entry> lineEntries = new ArrayList<>();
-        List<Log> avgWeights = User.getWeightLogs().getLogs();
+    private LineDataSet makeDataSet(ArrayList<Entry> entries) {
+        LineDataSet lineDataSet = new LineDataSet(entries, "");
 
-        System.out.println(avgWeights.size());
+        lineDataSet.setDrawValues(false);
+        lineDataSet.setLineWidth(1.5f);
+        lineDataSet.setDrawCircles(false);
+        lineDataSet.setColor(Color.rgb(159,168,218));
+
+        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.line_chart);
+        lineDataSet.setFillDrawable(drawable);
+        lineDataSet.setDrawFilled(true);
+
+        return lineDataSet;
+    }
+
+    private ArrayList<Entry> setLineEntriesDaily() {
+        ArrayList<Entry> lineEntries = new ArrayList<>();
+        List<Log> dailyWeights = User.getWeightLogs().getLogs();
 
         int i = 1;
-        for (Log log : avgWeights) {
+        for (Log log : dailyWeights) {
             lineEntries.add(new Entry(i++, (float) log.getWeight()));
         }
 
         return lineEntries;
+    }
+
+    private ArrayList<Entry> setLineEntriesWeekly() {
+        ArrayList<Entry> lineEntries = new ArrayList<>();
+        List<Double> avgWeights = User.getWeightLogs().getAverageWeights();
+
+        int i = 1;
+        for (double weight : avgWeights) {
+            lineEntries.add(new Entry(i++, (float) weight));
+        }
+
+        return lineEntries;
+    }
+
+    public void toggleLineChartDaily(View view) {
+        dailyToggleBtn.setEnabled(false);
+        weeklyToggleBtn.setEnabled(true);
+        initLineChart(setLineEntriesDaily());
+    }
+
+    public void toggleLineChartWeekly(View view) {
+        dailyToggleBtn.setEnabled(true);
+        weeklyToggleBtn.setEnabled(false);
+        initLineChart(setLineEntriesWeekly());
     }
  }
