@@ -166,7 +166,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<Entry> setLineEntriesDaily() {
         ArrayList<Entry> lineEntries = new ArrayList<>();
-        List<Log> dailyWeights = User.getWeightLogs().getLogs();
+        List<Log> dailyWeights = User.getWeightLogs()!= null ? User.getWeightLogs().getLogs() : new ArrayList<Log>();
 
         int i = 1;
         for (Log log : dailyWeights) {
@@ -178,7 +178,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<Entry> setLineEntriesWeekly() {
         ArrayList<Entry> lineEntries = new ArrayList<>();
-        List<Double> avgWeights = User.getWeightLogs().getAverageWeights();
+        List<Double> avgWeights = User.getWeightLogs() != null ? User.getWeightLogs().getAverageWeights() : new ArrayList<Double>();
 
         int i = 1;
         for (double weight : avgWeights) {

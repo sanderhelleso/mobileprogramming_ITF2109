@@ -105,6 +105,18 @@
         <item name="android:stateListAnimator">@null</item>
     </style>
 
+    <!-- Delete Account Button -->
+    <style name="delete_account_button" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textSize">14dip</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/delete_account_button</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textColor">@drawable/delete_account_text</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
     <!-- Chart Button -->
     <style name="chart_button" parent="@android:style/Widget.Button">
         <item name="android:gravity">center_vertical|center_horizontal</item>
