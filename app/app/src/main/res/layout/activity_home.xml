@@ -34,7 +34,7 @@
                     android:layout_height="62dp"
                     android:layout_marginBottom="5dp"
                     android:background="#ffffff"
-                    android:src="@drawable/ic_home_filled_32dp"
+                    android:src="@drawable/ic_fitness_center_light_32dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -235,8 +235,8 @@
                         android:id="@+id/textView17"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="22dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="20dp"
                         android:text="My weight over time"
                         android:visibility="visible"
                         app:layout_constraintStart_toStartOf="parent"
@@ -244,10 +244,11 @@
 
                     <com.github.mikephil.charting.charts.LineChart
                         android:id="@+id/lineChart"
-                        android:layout_width="358dp"
+                        android:layout_width="match_parent"
                         android:layout_height="167dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="1.0" />
@@ -257,14 +258,14 @@
                         style="@style/chart_button"
                         android:layout_width="76dp"
                         android:layout_height="32dp"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="32dp"
                         android:enabled="false"
                         android:onClick="toggleLineChartDaily"
                         android:text="Daily"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/chart_button_weekly"
-                        app:layout_constraintHorizontal_bias="0.25"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/textView17"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.085" />
@@ -282,7 +283,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.09" />
+                        app:layout_constraintVertical_bias="0.085" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
