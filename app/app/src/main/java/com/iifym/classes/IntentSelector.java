@@ -76,6 +76,8 @@ public class IntentSelector {
                                                                                 QueryDocumentSnapshot document = (QueryDocumentSnapshot) weightLogsTask.getResult().getDocuments().get(0);
                                                                                 WeightLogs weightLogs = document.toObject(WeightLogs.class);
                                                                                 User.setLoadedWeightLogs(weightLogs);
+                                                                            } else {
+                                                                                User.setLoadedWeightLogs(new WeightLogs());
                                                                             }
 
                                                                             // user has goal, goto Home
