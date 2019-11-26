@@ -1,0 +1,48 @@
+\contentsline {section}{What it is}{2}% 
+\contentsline {paragraph}{}{2}% 
+\contentsline {section}{Why do we need it?}{3}% 
+\contentsline {paragraph}{}{3}% 
+\contentsline {paragraph}{}{3}% 
+\contentsline {section}{User Guide}{4}% 
+\contentsline {paragraph}{}{4}% 
+\contentsline {subsection}{Authenticating}{4}% 
+\contentsline {paragraph}{}{4}% 
+\contentsline {subsection}{Creating a profile}{5}% 
+\contentsline {paragraph}{}{5}% 
+\contentsline {paragraph}{}{5}% 
+\contentsline {subsection}{Entering your weight and goal}{6}% 
+\contentsline {paragraph}{}{6}% 
+\contentsline {subsection}{Setting the daily activity}{7}% 
+\contentsline {paragraph}{}{7}% 
+\contentsline {paragraph}{}{7}% 
+\contentsline {subsection}{Workout frequency}{8}% 
+\contentsline {paragraph}{}{8}% 
+\contentsline {subsection}{Dashboard}{9}% 
+\contentsline {paragraph}{}{9}% 
+\contentsline {paragraph}{}{9}% 
+\contentsline {subsection}{Logging weight}{10}% 
+\contentsline {paragraph}{}{10}% 
+\contentsline {paragraph}{}{10}% 
+\contentsline {subsection}{Settings}{11}% 
+\contentsline {paragraph}{}{11}% 
+\contentsline {section}{Design}{12}% 
+\contentsline {paragraph}{}{12}% 
+\contentsline {subsection}{UI and UX}{12}% 
+\contentsline {paragraph}{}{12}% 
+\contentsline {subsection}{Technical}{12}% 
+\contentsline {paragraph}{}{12}% 
+\contentsline {section}{The core Features}{13}% 
+\contentsline {paragraph}{}{13}% 
+\contentsline {section}{What could be done different}{14}% 
+\contentsline {paragraph}{}{14}% 
+\contentsline {paragraph}{}{14}% 
+\contentsline {paragraph}{}{14}% 
+\contentsline {section}{Future Development}{14}% 
+\contentsline {paragraph}{}{14}% 
+\contentsline {paragraph}{}{14}% 
+\contentsline {section}{Testing}{14}% 
+\contentsline {paragraph}{}{14}% 
+\contentsline {section}{Conclusion}{15}% 
+\contentsline {paragraph}{}{15}% 
+\contentsline {section}{Resources and Help}{16}% 
+\contentsline {paragraph}{}{16}% 

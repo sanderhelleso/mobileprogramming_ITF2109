@@ -1,0 +1,338 @@
+\documentclass{article}
+
+\title{Project Report}
+\author{Sander Hellesø}
+
+\usepackage{pdfpages}
+\usepackage{titlesec}
+\usepackage{subfig}
+\usepackage{changepage}
+\usepackage{graphicx}
+\graphicspath{ {./assets/} }
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={120mm,225mm},
+ left=45mm,
+ top=45mm,
+ }
+
+
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+\titleformat*{\paragraph}{\large\bfseries}
+\titleformat*{\subparagraph}{\large\bfseries}
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\includepdf[fitpaper=true, pages=-]{./assets/cover3.pdf}
+\setcounter{page}{1}
+
+\tableofcontents
+\newpage
+
+\section{What it is}
+\paragraph{}
+    IIFYM App (Not offical name) is an application that will help users stick to their diet and acheive their fitness and health
+    goals in a fun and motivating way. The application heavily focuses on the motivational aspect, utilizing visual charts and progression schemas, while
+    at the same time provide the user with contiunal help on their fitness journey. The application make it easy to lose or gain weight without having to know
+    much about the details going on in the background.
+
+    \hfill \break
+    \hfill \break
+    \hfill \break
+
+    \begin{figure}[h!]
+        \includegraphics[scale=0.20]{auth}
+        \centering
+        \caption{Authentication Screen}
+    \end{figure}
+
+
+\newpage
+
+\section{Why do we need it?}
+\paragraph{}
+    In todays society, there is alot of focus on health and fitness. When a topic is popular, there is alot of information, but often most of it is overcomplicated or outdated.
+    IIFYM (If it fits your macros) is a popular dieting method that allows you to eat whatever you want as long as the calories and macronutrients are tracked and not exceeded.
+    Since this method is a lot less restrictive that the standard "meal plan", it allows you the flexibility to eat your favorite foods while still seeing results.
+
+\paragraph{}
+    This app simplifies this for the user. Allowing the user to very easy calculate their calore requirements just by entering a few facts about themself. The only thing the
+    user then has to do is to simply log their weight whenever they can. The app will recalculate the users calorie and macronutrients need and show the progression aswell
+    as the estimated weeks left until the goal is reached. It cant become any simplier than this.
+
+    \hfill \break
+    \hfill \break
+
+    \begin{figure}[h!]
+        \includegraphics[scale=0.45]{iifym}
+        \centering
+        \caption{Example of different foods with the same amount of fat}
+    \end{figure}
+
+\newpage
+
+\section{User Guide}
+\paragraph{}
+    A simple user guide to get started with the application.
+
+    \hfill \break
+
+\subsection{Authenticating}
+\paragraph{}
+    It is very simple to get started. If you dont have an account yet, you can create one on the first screen you see when opening the app
+    By clicking on the white bordered "Sign Up" button. If you happend to have an account from before, you can log in with that account
+    using the highlighted purple button "Login".
+
+    \hfill \break
+    \hfill \break
+    
+    \begin{figure}[h!]
+        \includegraphics[scale=0.20]{auth}
+        \centering
+        \caption{Authentication screen where the user can either log in or sign up}
+    \end{figure}
+    \newpage
+
+\subsection{Creating a profile}
+\paragraph{}
+    Once auhtenticated you need to create a profile if you haven't yet. The profile setup asks you what your height is, your gender aswell as your birthday.
+    This data is used in the formulas required to calculate the your calorie and macronutrients requirements.
+
+\paragraph{}
+    To set your height, simply use your finger and slide the circle to whatever your height is. Selecting the gender can be done by clicking on the "Select a gender" field,
+    a dropdown containing the options "male" and "female" appears, select whatever is correctly identifiable to you. Lastly, select your birthday by clicking on the "Select date of birth"
+    field, a popup with a interactive calendar appears. Use this calendar to select your birthday in year, month and date. Once done, you can finish the setup by clicking the big, purple
+    button "Save and continue to goal".
+
+    \hfill \break
+    \hfill \break
+
+    \begin{figure}[h!]
+        \includegraphics[scale=0.20]{profile}
+        \centering
+        \caption{Profile setup screen}
+    \end{figure}
+    \newpage
+
+\subsection{Entering your weight and goal}
+\paragraph{}
+    In order to create your first goal, we need to set the goal! Simply set your current weight by using the slider "My current weight", this will serve as the start
+    of your tracking journey. The only thing left is to select your goal weight. Depending on if you want to gain or lose weight, the calories and macronutrients will differ.
+    Select the goal weight by using the slider "My goal weight". Once you are happy with both values, continue to the next step by clicking the big, purple
+    button "Continue to next step".
+
+    \hfill \break
+    \hfill \break
+
+    \begin{figure}[h!]
+        \includegraphics[scale=0.20]{stats}
+        \centering
+        \caption{Selecting your weight screen}
+    \end{figure}
+    \newpage
+
+\subsection{Setting the daily activity}
+\paragraph{}
+    The next thing we need is to now about your daily activity. Simply select the most appropriate option out of the following by clicking on them:
+
+    \begin{itemize}
+        \item Sedentary
+        \item Light Active
+        \item Active
+        \item Very Active
+    \end{itemize}
+
+\paragraph{}
+    Note that the options above is your lifestyle WITHOUT workouts included. Be honest with yourself about what you do outside of the gym (work, trips, etc).
+    Once you are happy with your selected option, continue to the next step by clicking the big, purple
+    button "Continue to next step".
+   
+    \hfill \break
+    
+    \begin{figure}[h!]
+        \includegraphics[scale=0.20]{activity}
+        \centering
+        \caption{Selecting your activity screen}
+    \end{figure}
+    \newpage
+
+\subsection{Workout frequency}
+\paragraph{}
+    The final step in creating your first goal is to determine the workout frequency you will be doing. Start by selecting the amount of workouts you will be doing
+    per week by using the slider labeled by "Workouts per week". The amount is limited to 7 as we only require one hard session a day to determine the calorie and 
+    macronutrients requirements. We also need to know about the length of each session. This is a rough estimate in minutes. Select this amount by using the 
+    "Minutes per workout" slider. Finally, select the intensity of each workout by clicking on the most appropriate tab out of the options listed. 
+    Finish the setup by clicking the big, purple button "Create goal".
+  
+    \hfill \break
+    \hfill \break
+        
+    \begin{figure}[h!]
+        \includegraphics[scale=0.20]{workouts}
+        \centering
+        \caption{Setting the workout frequency screen}
+    \end{figure}
+    \newpage
+
+\subsection{Dashboard}
+\paragraph{}
+    Once the goal has been successfully setup. You can access the dashboard. This will now be the first thing you see when logging into the app.
+    The dashboard contains information about the calories you need to eat every day, aswell as the macronutrients and its separation.
+
+\paragraph{}
+    The dashboard also includes a linegraph displaying your daily or weekly progression depending on the active toggle. Note that the data will
+    only show if there actually is data to display.
+  
+    \hfill \break
+    \hfill \break
+        
+    \begin{figure}[h!]
+        \includegraphics[scale=0.20]{dashboard}
+        \centering
+        \caption{The app dashboard, displaying the data}
+    \end{figure}
+    \newpage
+
+\subsection{Logging weight}
+\paragraph{}
+    You can log your daily weight by clicking the big, round pluss button located at the bottom of the dashboard. This button will open a new screen
+    where you can enter todays weight and save it. Once a weight has been saved, you can see it displayed in the linegraph. 
+    
+\paragraph{}
+    For every seveth (7) log entry.
+    The application will recalculate your calorie and macronutrient requirements to keep your body in the required state to lose fat / gain muscle depending
+    on your goal. You do not need to log EVERY day, but the more you do, the more accurate numbers we can provide which will eventually provide better results
+    so it is recommended to log every day if you can.
+      
+    \hfill \break
+    \hfill \break
+            
+    \begin{figure}[h!]
+        \includegraphics[scale=0.20]{log}
+        \centering
+        \caption{Log your weight screen}
+    \end{figure}
+    \newpage
+
+\subsection{Settings}
+\paragraph{}
+    The settings screen can be accessed by clicking on the grindwheel on the right side og the bottom navigation bar, located on the dashboard.
+    From the settings screen you can either log out, or delete your account. If you decide to logout, you will be returned to the authentication screen
+    and must re-authenticate in order to get back to the dashboard. If you decide to delete your accound, a prompt must be filled out by entering your password.
+    If completed, all data will be wiped for the account and the user will also be returned to the authentication screen.
+  
+    \hfill \break
+    \hfill \break
+                
+    \begin{figure}[h!]
+        \includegraphics[scale=0.20]{settings}
+        \centering
+        \caption{The settings screen where you can logout or delete the account}
+    \end{figure}
+
+\newpage
+
+\section{Design}
+\paragraph{}
+    Discussing the techinaclity behind the application aswell as the UI and UX.
+
+    \hfill \break
+    \hfill \break
+
+\subsection{UI and UX}
+\paragraph{}
+    qqweqwe
+
+    \hfill \break
+    \hfill \break
+
+\subsection{Technical}
+\paragraph{}
+    qqweqwe
+
+    \hfill \break
+    \hfill \break
+
+\newpage
+
+\section{The core Features}
+\paragraph{}
+    The following features is what binds the application together and should be weighted during grading:
+
+    \hfill \break
+
+    \begin{itemize}
+        \item Homescreen, Easy access to both login and signup depending on the users need
+        \item Profile and goal setup, Good UX that easily allows the user to use the app without thinking
+        \item Startup logic / Splashscreen, Loads in data and set activity depending on where the user is (Signed out, no profile, no goal etc)
+        \item Dashboard, MPCharts API
+        \item Bottom Navigation UI and button
+        \item Design and professional feel 
+        \item Account deletion, A crucial step alot of apps are missing
+    \end{itemize}
+\newpage    
+
+
+\newpage
+
+\section{What could be done different}
+\paragraph{}
+    Due to the fact that I  had thought about the app idea for a while and its features. I came in to the development of the project with a clear idea of what to do.
+    If I where to change anything, it would be to refactor the main logic of the math calculation out of the static User class and have an own dedicated math class
+    for this job. 
+
+\paragraph{}
+    There could also potensially be improvements of the way I access the User object, a different solution could be to pass it along all intents and remove
+    the static modifier, but on the otherhand, I feel that this greatly increases the complexity of the code. If there were more time I would definently add in some unit tests
+    to ensure the logic ACTUALLY is correct, even though this has been checked manually (see Testing section).
+
+\paragraph{}
+    There is also one bug that occurs at very rare times, when the user
+    logs their weight, the calories and macronutrients sometimes get reset to 0 and the user must log back to see the correct data. This is however a very rare occurence but should
+    be taken note to. 
+
+    \hfill \break
+    \hfill \break
+
+\section{Future Development}
+\paragraph{}
+    For the future I would love to add a tabbed menu option that navigates the user to a list where they can see details about each log entry aswell as the estimated
+    weeks left to reach the goal. I also want to develop a button where the user can update their goal, this is something that can be done in a day due to the logic
+    is all ready developed and tested.
+
+\paragraph{}
+    A cool feature I would love to add in the future would be a notification system that alerts the user if it has gone X hours since the last log to motivate the
+    user and remind to log the weight for the day.
+
+    \hfill \break
+    \hfill \break
+
+\section{Testing}
+\paragraph{}
+    No unit tests were written during the development of the application. The testing done was manual and every feature was tested this way to ensure that the "mistakes" of a human
+    could potensially interfere with the logic.
+
+\newpage
+
+\section{Conclusion}
+\paragraph{}
+    To conculde the process of building the application, it was alot of fun working and learning about the Android environment and the cool API's it expose to us. 
+    Most of the documentation was well documented and I had to main "roadblock" when it came to the development process. I feel that I managed to deliver each iteration
+    of the application in good time and I am happy with the final outcome. The application does what it was designed to do and can be a great tool for the people that
+    needs the help in regards to fitness and nutrition.
+\newpage
+
+\section{Resources and Help}
+\paragraph{}
+    The following resources has been used to develop features of the app:
+
+    \begin{itemize}
+        \item Firebase Docs (https://firebase.google.com/docs/android/setup)
+        \item MPChart Docs (https://github.com/PhilJay/MPAndroidChart)
+        \item Math Formulas (https://steelfitusa.com/2018/10/calculate-tdee/)
+    \end{itemize}
+
+\end{document}

@@ -103,6 +103,7 @@ public class IntentSelector {
                         }
                     }
                 });
+
     }
 
     public static void replaceActivity(final Intent intent, Activity activity) {
