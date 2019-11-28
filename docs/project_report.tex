@@ -17,6 +17,14 @@
  top=45mm,
  }
 
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
 
 \titleformat*{\section}{\LARGE\bfseries}
 \titleformat*{\subsection}{\Large\bfseries}
@@ -26,7 +34,7 @@
 \setcounter{secnumdepth}{0}
 
 \begin{document}
-\includepdf[fitpaper=true, pages=-]{./assets/cover3.pdf}
+\includepdf[fitpaper=true, pages=-]{./assets/cover4.pdf}
 \setcounter{page}{1}
 
 \tableofcontents
@@ -44,9 +52,9 @@
     \hfill \break
 
     \begin{figure}[h!]
-        \includegraphics[scale=0.20]{auth}
+        \includegraphics[scale=0.20]{dashboard}
         \centering
-        \caption{Authentication Screen}
+        \caption{A first look at the apps dashboard}
     \end{figure}
 
 
@@ -244,17 +252,132 @@
 
 \subsection{UI and UX}
 \paragraph{}
-    qqweqwe
+    The user interface is inspired from the concept "Flat Design", which is a style of interface design emphasizing minimum use of stylistic elements 
+    that give the illusion of three dimensions (such as the use of drop shadows, depth, gradients, border lines or textures) and is focused on a minimalist
+    use of simple elements, typography and flat colors.
 
-    \hfill \break
-    \hfill \break
-
-\subsection{Technical}
 \paragraph{}
-    qqweqwe
+    For user experience, the application is structured in a way such that the user do not need to think. The user simply does what is instructed. The app 
+    user alot of step by step navigation due to the fact that there is alot of setup required from the user. By utilizing this method, the user may not 
+    realize that there is alot of information to fill out, but rather movtiated due to the amount of steps to complete is displayed. Navigation between 
+    screens have a custom slide / fade animation that increases the feel of the step by step when either continuing or going back.
+    
+    \hfill \break
+
+\subsection{Navigation}
+    \paragraph{}
+    Navigation between screens are mainly done by utilizing a fixed bottombar component, available on the dashboard, highlightng the current
+    screen. This ensures the user easily can toggle sceens comfortably due to the natural position of the tabbar (easy access from thumbs). 
+    There is also a topbar providing a back button for all screens navigated to that the user is able to return from.
+
+    \hfill \break
+
+\subsection{Datastorage}
+    \paragraph{}
+    Firebase will be the platform of choice when it comes to datastorage. The data is structured to no longer than 2 childs deep than the parent tree to reduce the amount of reads per query.
+    There is no need for realtime updates so Firestore is utilized over the realtime database.
+
+    \paragraph{}
+    Data is provided by the user. There is validation of all data required that is inputed by the user.
+    Data that needs to be validated is mainly the numbers for the different nutrients calculation, stats provided by the user and account actions.
 
     \hfill \break
     \hfill \break
+    
+    \subsection{Trees}
+        \paragraph{}
+        Every user has a unique identifier called an UID. Goals, Profiles and WeightLogs collections use this UID to quickly access the users documents in O(1) time complexity.
+        Goals is unqiue such that a user can only have one goal at a time, but this goal can be changed (future implementation). If we will store old goals for history
+        is something that potensially could be implemented in the future.
+
+        \hfill \break
+        \subsubsection{Database Structure}
+
+        \begin{itemize}
+          \item goals
+            \begin{itemize}
+                \item activityLvl
+                \item currentWeight
+                \item estimatedWeeksToReach
+                \item startWeight
+                \item goalWeight
+                \item intensityLvl
+                \item uid
+                \item macros
+                    \begin{itemize}
+                        \item calories
+                        \item fat
+                        \item protein
+                        \item carbohydrates
+                    \end{itemize}
+            \end{itemize}
+            \hfill \break
+          \item profiles
+            \begin{itemize}
+                \item birthday
+                \item gender
+                \item hasGoal
+                \item height
+                \item uid
+            \end{itemize}
+            \hfill \break
+          \item weightLogs
+            \begin{itemize}
+                \item uid
+                \item lastLogged
+                \item averageWeights
+                \item logs
+                    \begin{itemize}
+                        \item loggedAt
+                        \item weight
+                    \end{itemize}
+            \end{itemize}
+        \end{itemize}
+
+\newpage
+
+\subsection{Resources}
+\paragraph{}
+    All of the applications illustation resources will be available from Material, using the Material Icons set. 
+    The fonts used (amiko bold and armata) is available thorugh Android Studio.
+    Cover image is retrieved from unsplash.com (free to use licence).
+
+    \hfill \break
+
+    \section{Classes}
+        \paragraph{}
+        Below is a list of the classes required to build the application.
+
+        \hfill \break
+
+        \begin{itemize}
+            \item DatePicker                 - Wrapper around the original date picker by Google
+            \item DecimalDigitsInputFilter   - Filters and display decimal numbers correctly in editText fields
+            \item Goal                       - Data object for a users goal
+            \item HintAdapter                - Wrapper around ArrayAdapter class to implement a hint
+            \item IntentSelector             - Selects the correct activity to start depending on the users auth state
+            \item Log                        - Data object for a users weight log list
+            \item Macros                     - Data object for a users macros for the current goal
+            \item Profile                    - Data object for a users profile
+            \item SeekBarWithMin             - Custom seekbar that allows for custom from - to range with labels, original only includes 0 - 1
+            \item User                       - Main class for the authenticated user, calculates calories and macronutrients aswell as setting loaded data from database
+            \item Validator                  - Validator class with regex to ensure correct validation for a number of different fields and data
+            \item WeightLogs                 - Calculates the average weight from the last to current log era
+            \item WindowHelper               - Sets transparent navigation on the auth and splash screen
+        \end{itemize}
+
+        \hfill \break
+
+    \subsection{Libraries}
+        \paragraph{}
+        Below is a list of the required Libraries required to build the application.
+
+        \hfill \break
+
+        \begin{itemize}
+            \item Firebase       - Cloud Database and authentication provided by Google
+            \item MPAndroidChart - A powerful Android chart view / graph view library, supporting line- bar- pie- radar- bubble- and candlestick charts as well as scaling, dragging and animations.
+        \end{itemize}
 
 \newpage
 
